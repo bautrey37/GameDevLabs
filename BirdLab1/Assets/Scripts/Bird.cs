@@ -5,22 +5,22 @@ using UnityEngine;
 public class Bird : MonoBehaviour
 {
     public float ForceAmount = 100;
-    private Rigidbody2D rigidBody2D;
-    private AudioSource audioSource;
+    private Rigidbody2D _rigidBody2D;
+    private AudioSource _audioSource;
 
     void Start()
     {
-        rigidBody2D = GetComponent<Rigidbody2D>();
-        audioSource = GetComponent<AudioSource>();
+        _rigidBody2D = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rigidBody2D.velocity = Vector2.zero;
-            rigidBody2D.AddForce(new Vector2(0, ForceAmount));
-            audioSource.Play();
+            _rigidBody2D.velocity = Vector2.zero;
+            _rigidBody2D.AddForce(new Vector2(0, ForceAmount));
+            _audioSource.Play();
         }
     }
 
@@ -32,7 +32,7 @@ public class Bird : MonoBehaviour
     private void Restart()
     {
         Game.Instance.Restart();
-        rigidBody2D.velocity = Vector2.zero;
+        _rigidBody2D.velocity = Vector2.zero;
         transform.position = new Vector3(transform.position.x, 0, 0);
     }
 
