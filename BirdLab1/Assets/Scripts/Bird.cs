@@ -6,12 +6,18 @@ public class Bird : MonoBehaviour
 {
     public float ForceAmount = 100;
     private Rigidbody2D _rigidBody2D;
-    private AudioSource _audioSource;
+
+    private AudioSource[] sound;
+    private AudioSource jump;
+    private AudioSource death;
 
     void Start()
     {
         _rigidBody2D = GetComponent<Rigidbody2D>();
-        _audioSource = GetComponent<AudioSource>();
+
+        sound = GetComponents<AudioSource>();
+        jump = sound[0];
+        death = sound[1];
     }
 
     void Update()
@@ -20,13 +26,7 @@ public class Bird : MonoBehaviour
         {
             _rigidBody2D.velocity = Vector2.zero;
             _rigidBody2D.AddForce(new Vector2(0, ForceAmount));
-            _audioSource.Play();
-        }
-        // falls out the bottom
-        if (_rigidBody2D.position.y < -6)
-        {
-            Debug.Log("Fallen out of bottom screen");
-            Restart();
+            jump.Play();
         }
     }
 
@@ -37,12 +37,15 @@ public class Bird : MonoBehaviour
 
     private void Restart()
     {
+        death.Play();
         Game.Instance.Restart();
         _rigidBody2D.velocity = Vector2.zero;
         transform.position = new Vector3(transform.position.x, 0, 0);
     }
 
-    // restart game when bird falls out of screen
-    // there is a function for this. 
+    private void OnBecameInvisible()
+    {
+        Restart();
+    }
 
 }
