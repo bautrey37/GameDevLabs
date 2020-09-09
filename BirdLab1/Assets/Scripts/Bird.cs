@@ -13,11 +13,18 @@ public class Bird : MonoBehaviour
 
     void Start()
     {
+        // wait3seconds();
+
         _rigidBody2D = GetComponent<Rigidbody2D>();
 
         sound = GetComponents<AudioSource>();
         jump = sound[0];
         death = sound[1];
+    }
+
+    IEnumerable wait3seconds()
+    {
+        yield return new WaitForSeconds(3);
     }
 
     void Update()
@@ -30,22 +37,29 @@ public class Bird : MonoBehaviour
         }
     }
 
+    // Hits wall
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Wall is hit");
+        death.Play();
+        Time.timeScale = 0;
+        wait3seconds();
+        Restart();
+    }
+
+    // went out of screen
+    private void OnBecameInvisible()
+    {
+        death.Play();
         Restart();
     }
 
     private void Restart()
     {
-        death.Play();
+        Time.timeScale = 1;
+        
         Game.Instance.Restart();
         _rigidBody2D.velocity = Vector2.zero;
         transform.position = new Vector3(transform.position.x, 0, 0);
     }
-
-    private void OnBecameInvisible()
-    {
-        Restart();
-    }
-
 }
