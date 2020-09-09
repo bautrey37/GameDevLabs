@@ -25,8 +25,9 @@ public class Game : MonoBehaviour {
             tree.transform.position = new Vector3(TreeDistance * i, Random.Range(-2f, 2f), 0f);
         }
     }
-	
-	void Update () {
+
+    void Update()
+    {
         if (!_stop)
         {
             foreach (GameObject tree in _trees)
@@ -38,7 +39,21 @@ public class Game : MonoBehaviour {
                 }
             }
         }
-	}
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if(Time.timeScale == 1)
+            {
+                PauseGame();
+            } else
+            {
+                ResumeGame();
+            }
+            
+        }
+        
+    }
 
     public void Restart()
     {
@@ -53,4 +68,16 @@ public class Game : MonoBehaviour {
     {
         _stop = true;
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        _stop = false;
+    }
+
 }
