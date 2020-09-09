@@ -22,6 +22,12 @@ public class Bird : MonoBehaviour
             _rigidBody2D.AddForce(new Vector2(0, ForceAmount));
             _audioSource.Play();
         }
+        // falls out the bottom
+        if (_rigidBody2D.position.y < -6)
+        {
+            Debug.Log("Fallen out of bottom screen");
+            Restart();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
