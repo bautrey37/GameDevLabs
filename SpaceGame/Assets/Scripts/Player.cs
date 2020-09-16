@@ -5,16 +5,65 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float SpawnDelay = 1;
+    public static Player Instance;
+
+    public float SpawnDelay = 0.5f;
     public Bullet BulletPrefab;
-    public int Lives = 3;
     public Vector2 InitLocation;
 
     private float NextSpawnTime = 0;
 
-    void Start()
+    private int _score;
+    public int Score {
+        get
+        {
+            return _score;
+        }
+        set
+        {
+            _score = value;
+            HUD.Instance.SetScore(_score);
+        }
+    }
+
+    private float _energy;
+    public float Energy
     {
-        
+        get
+        {
+            return _energy;
+        }
+        set
+        {
+            _energy = Mathf.Clamp01(value);
+            HUD.Instance.SetEnergy(_energy);
+        }
+    }
+
+    private int _lives;
+    public int Lives
+    {
+        get
+        {
+            return _lives;
+        }
+        set
+        {
+            _lives = Mathf.Clamp(value, 0, 4);
+            HUD.Instance.SetLives(_lives);
+        }
+    }
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        Score = 0;
+        Energy = 1;
+        Lives = 4;
     }
 
     void Update()
@@ -61,24 +110,25 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Lives--;
+
         Enemy enemy = collision.GetComponent<Enemy>();
         if (enemy != null)
         {
             enemy.Destroy();
         }
-        if (Lives == 1)
+        if (Lives == 0)
         {
-            RestartGame();
+            gameObject.SetActive(false);
+            HUD.Instance.ShowLoseScreen();
         }
-        Lives--;
+        
         transform.position = InitLocation;
-        //Input.mousePosition = InitLocation;
     }
 
-    private void RestartGame()
+    public void Restart()
     {
-        //SceneManager.LoadScene(0);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 
