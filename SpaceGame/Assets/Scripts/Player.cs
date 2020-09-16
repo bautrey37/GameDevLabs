@@ -7,11 +7,12 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
 
-    public float SpawnDelay = 0.5f;
+    public float BulletDelay = 0.3f; // seconds
+    public float RespawnDelay = 2.0f; // seconds
     public Bullet BulletPrefab;
-    public Vector2 InitLocation;
 
-    private float NextSpawnTime = 0;
+    private float NextRespawn = 0;
+    private bool dead;
 
     private int _score;
     public int Score {
@@ -64,6 +65,9 @@ public class Player : MonoBehaviour
         Score = 0;
         Energy = 1;
         Lives = 4;
+        dead = false;
+
+        InvokeRepeating("launchBullet", 0f, BulletDelay);
     }
 
     void Update()
@@ -88,13 +92,21 @@ public class Player : MonoBehaviour
         //    transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
         //}
 
-        // can also use InvokeRepeating method
-        if (Time.time >= NextSpawnTime)
+        if (dead && Time.time >= NextRespawn)
         {
-            Bullet bullet = GameObject.Instantiate<Bullet>(BulletPrefab, transform.position, Quaternion.identity, null);
-            NextSpawnTime += SpawnDelay;
+            Debug.Log("Respawning");
+            dead = false;
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         }
         
+    }
+
+    private void launchBullet()
+    {
+        if (!dead)
+        {
+            GameObject.Instantiate<Bullet>(BulletPrefab, transform.position, Quaternion.identity, null);
+        }   
     }
 
     // https://answers.unity.com/questions/501893/calculating-2d-camera-bounds.html
@@ -110,25 +122,31 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Lives--;
-
         Enemy enemy = collision.GetComponent<Enemy>();
-        if (enemy != null)
+        if (enemy != null && !dead)
         {
             enemy.Destroy();
-        }
-        if (Lives == 0)
-        {
-            gameObject.SetActive(false);
-            HUD.Instance.ShowLoseScreen();
+
+            Lives--;
+            if (Lives == 0)
+            {
+                gameObject.SetActive(false);
+                HUD.Instance.ShowLoseScreen();
+            }
+            else
+            {
+                // show invinsibility mode
+                GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, .5f);
+                dead = true;
+                NextRespawn = Time.time + RespawnDelay;
+            }
         }
         
-        transform.position = InitLocation;
     }
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
