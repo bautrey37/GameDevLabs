@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public PlayerBullet BulletPrefab;
 
     public Shield ShieldPrefab;
-    private float _shieldEnergyCost;
+    
 
     private float _nextRespawn = 0;
     private bool _dead;
@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    private float _shieldEnergyCost;
+    private float _energyRecharge;
     private float _energy;
     public float Energy
     {
@@ -69,11 +71,12 @@ public class Player : MonoBehaviour
     {
         Score = 0;
         Energy = 1;
+        _energyRecharge = 0.0005f;
         Lives = 3;
         _dead = false;
 
         ShieldPrefab = GameObject.Instantiate<Shield>(ShieldPrefab, transform.position, Quaternion.identity, gameObject.transform);
-        _shieldEnergyCost = 0.001f;
+        _shieldEnergyCost = 0.002f;
 
         InvokeRepeating("launchBullet", 0f, BulletDelay);
     }
@@ -149,7 +152,7 @@ public class Player : MonoBehaviour
     // Spawn shield on right button down, do not spawn on no energy
     private void handleShieldControls()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && Energy != 0)
         {
             ShieldPrefab.activate();
         }
@@ -159,9 +162,18 @@ public class Player : MonoBehaviour
             ShieldPrefab.deactivate();
         }
 
+        if (Energy == 0)
+        {
+            ShieldPrefab.deactivate();
+        }
+
         if (ShieldPrefab.isActive())
         {
             Energy -= _shieldEnergyCost;
+        }
+        else
+        {
+            Energy += _energyRecharge;
         }
     }
 
