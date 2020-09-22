@@ -69,18 +69,18 @@ public class Player : MonoBehaviour
     {
         Score = 0;
         Energy = 1;
-        Lives = 4;
+        Lives = 3;
         _dead = false;
 
         ShieldPrefab = GameObject.Instantiate<Shield>(ShieldPrefab, transform.position, Quaternion.identity, gameObject.transform);
-        _shieldEnergyCost = 0.005f;
+        _shieldEnergyCost = 0.001f;
 
         InvokeRepeating("launchBullet", 0f, BulletDelay);
     }
 
     private void launchBullet()
     {
-        if (!_dead)
+        if (!_dead && !ShieldPrefab.isActive())
         {
             GameObject.Instantiate<PlayerBullet>(BulletPrefab, transform.position, Quaternion.identity, null);
         }
@@ -195,6 +195,8 @@ public class Player : MonoBehaviour
         if (!_dead)
         {
             Lives--;
+            ShieldPrefab.deactivate();
+
             if (Lives == 0)
             {
                 gameObject.SetActive(false);

@@ -31,4 +31,9 @@ public class EnemyBullet : MonoBehaviour
         }
         
     }
+
+    public void Destroy()
+    {
+        GameObject.Destroy(gameObject);
+    }
 }

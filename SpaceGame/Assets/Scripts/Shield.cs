@@ -13,21 +13,23 @@ public class Shield : MonoBehaviour
     {
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Shield collision");
+        EnemyBullet enemyBullet = collision.GetComponent<EnemyBullet>();
+        if (enemyBullet != null)
+        {
+            enemyBullet.Destroy();
+        }
     }
 
     public void activate()
     {
         gameObject.SetActive(true);
-        Debug.Log("Shield active");
     }
 
     public void deactivate()
     {
         gameObject.SetActive(false);
-        Debug.Log("Shield not active");
     }
 
     public bool isActive()
