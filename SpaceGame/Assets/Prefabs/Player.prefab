@@ -101,6 +101,7 @@ MonoBehaviour:
   RespawnDelay: 1
   BulletPrefab: {fileID: 5903794522110057638, guid: b0541fbd3c70044a5ab7559b659419ac, type: 3}
   ShieldPrefab: {fileID: 3727928004466415522, guid: b780520ac6e6c4573a47e6913c80d0de, type: 3}
+  LaserPrefab: {fileID: 6175866276942981497, guid: 056cd9185a56444888dcc8fedcf2c1d7, type: 3}
 --- !u!60 &8829995868998467698
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -10,9 +10,8 @@ public class Player : MonoBehaviour
     public float BulletDelay = 0.3f; // seconds
     public float RespawnDelay = 1.0f; // seconds
     public PlayerBullet BulletPrefab;
-
     public Shield ShieldPrefab;
-    
+    public Laser LaserPrefab;
 
     private float _nextRespawn = 0;
     private bool _dead;
@@ -20,7 +19,8 @@ public class Player : MonoBehaviour
     private Vector3 _lastPosition;
 
     private int _score;
-    public int Score {
+    public int Score
+    {
         get
         {
             return _score;
@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    private float _laserEnergyCost;
     private float _shieldEnergyCost;
     private float _energyRecharge;
     private float _energy;
@@ -71,12 +72,15 @@ public class Player : MonoBehaviour
     {
         Score = 0;
         Energy = 1;
-        _energyRecharge = 0.0005f;
+        _energyRecharge = 0.001f;
         Lives = 3;
         _dead = false;
 
         ShieldPrefab = GameObject.Instantiate<Shield>(ShieldPrefab, transform.position, Quaternion.identity, gameObject.transform);
         _shieldEnergyCost = 0.002f;
+
+        LaserPrefab = GameObject.Instantiate<Laser>(LaserPrefab, transform.position, Quaternion.identity, gameObject.transform);
+        _laserEnergyCost = 0.003f;
 
         InvokeRepeating("launchBullet", 0f, BulletDelay);
     }
@@ -121,6 +125,11 @@ public class Player : MonoBehaviour
         {
             handleShieldControls();
             handleLaserControls();
+
+            if (!ShieldPrefab.isActive() && !LaserPrefab.isActive())
+            {
+                Energy += _energyRecharge;
+            }
         }
 
         if (_dead && Time.time >= _nextRespawn)
@@ -152,7 +161,7 @@ public class Player : MonoBehaviour
     // Spawn shield on right button down, do not spawn on no energy
     private void handleShieldControls()
     {
-        if (Input.GetMouseButtonDown(1) && Energy != 0)
+        if (Input.GetMouseButtonDown(1) && Energy != 0 && !LaserPrefab.isActive())
         {
             ShieldPrefab.activate();
         }
@@ -171,18 +180,28 @@ public class Player : MonoBehaviour
         {
             Energy -= _shieldEnergyCost;
         }
-        else
-        {
-            Energy += _energyRecharge;
-        }
     }
 
     // Spawn laser on left button down, do not spawn on no energy
     private void handleLaserControls()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Energy != 0 && !ShieldPrefab.isActive())
         {
+            LaserPrefab.activate();
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            LaserPrefab.deactivate();
+        }
 
+        if (Energy == 0)
+        {
+            LaserPrefab.deactivate();
+        }
+
+        if (LaserPrefab.isActive())
+        {
+            Energy -= _laserEnergyCost;
         }
     }
 
@@ -194,7 +213,7 @@ public class Player : MonoBehaviour
             enemy.Destroy();
             Hit();
         }
-        
+
     }
 
     public void Restart()

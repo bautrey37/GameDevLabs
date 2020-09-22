@@ -43,16 +43,16 @@ TextureImporter:
     second: player_laser
   - first:
       213: 5893540339403691780
-    second: sheet_12
+    second: powerup_1
   - first:
       213: -1254599994303000284
-    second: sheet_13
+    second: powerup_2
   - first:
       213: 1949730731670058941
-    second: sheet_14
+    second: powerup_3
   - first:
       213: -3627854407871609761
-    second: sheet_15
+    second: laser
   - first:
       213: -1888837539432032468
     second: sheet_16
@@ -405,6 +405,90 @@ TextureImporter:
       bones: []
       spriteID: a5cb01fb8a160acc0800000000000000
       internalID: -3701851516310602662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: powerup_1
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 501
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 407979f96bf0ac150800000000000000
+      internalID: 5893540339403691780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: powerup_2
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 895
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 421dc5cc3f3c69ee0800000000000000
+      internalID: -1254599994303000284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: powerup_3
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 2
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db73bd435c5de0b10800000000000000
+      internalID: 1949730731670058941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laser
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 799
+        width: 3
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f544af123a547adc0800000000000000
+      internalID: -3627854407871609761
       vertices: []
       indices: 
       edges: []
