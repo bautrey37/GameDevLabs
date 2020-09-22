@@ -11,10 +11,13 @@ public class Player : MonoBehaviour
     public float RespawnDelay = 1.0f; // seconds
     public PlayerBullet BulletPrefab;
 
-    private float NextRespawn = 0;
-    private bool dead;
+    public Shield ShieldPrefab;
+    private float _shieldEnergyCost;
 
-    private Vector3 lastPosition;
+    private float _nextRespawn = 0;
+    private bool _dead;
+
+    private Vector3 _lastPosition;
 
     private int _score;
     public int Score {
@@ -67,14 +70,17 @@ public class Player : MonoBehaviour
         Score = 0;
         Energy = 1;
         Lives = 4;
-        dead = false;
+        _dead = false;
+
+        ShieldPrefab = GameObject.Instantiate<Shield>(ShieldPrefab, transform.position, Quaternion.identity, gameObject.transform);
+        _shieldEnergyCost = 0.005f;
 
         InvokeRepeating("launchBullet", 0f, BulletDelay);
     }
 
     private void launchBullet()
     {
-        if (!dead)
+        if (!_dead)
         {
             GameObject.Instantiate<PlayerBullet>(BulletPrefab, transform.position, Quaternion.identity, null);
         }
@@ -96,9 +102,9 @@ public class Player : MonoBehaviour
 
         // TODO Extra: make your ship tilting left or right depending on the direction you are moving.
         //Vector2 moveDirection = GetComponent<Rigidbody2D>().velocity;
-        var direction = transform.position - lastPosition;
+        var direction = transform.position - _lastPosition;
         Vector2 localDirection = transform.InverseTransformDirection(direction);
-        lastPosition = transform.position;
+        _lastPosition = transform.position;
 
         //Debug.Log(localDirection);
         // Comparison of Vector2 is not accurate
@@ -106,14 +112,19 @@ public class Player : MonoBehaviour
         {
             //Debug.Log("Not 0 velocity");
             transform.rotation = Quaternion.Euler(0, 0, GetRotation(localDirection));
-        } 
+        }
 
-        if (dead && Time.time >= NextRespawn)
+        if (!_dead)
         {
-            dead = false;
+            handleShieldControls();
+            handleLaserControls();
+        }
+
+        if (_dead && Time.time >= _nextRespawn)
+        {
+            _dead = false;
             GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         }
-        
     }
 
     private float GetRotation(Vector2 direction)
@@ -135,10 +146,38 @@ public class Player : MonoBehaviour
         return bounds;
     }
 
+    // Spawn shield on right button down, do not spawn on no energy
+    private void handleShieldControls()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            ShieldPrefab.activate();
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            ShieldPrefab.deactivate();
+        }
+
+        if (ShieldPrefab.isActive())
+        {
+            Energy -= _shieldEnergyCost;
+        }
+    }
+
+    // Spawn laser on left button down, do not spawn on no energy
+    private void handleLaserControls()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemy = collision.GetComponent<Enemy>();
-        if (enemy != null && !dead)
+        if (enemy != null && !_dead)
         {
             enemy.Destroy();
             Hit();
@@ -153,7 +192,7 @@ public class Player : MonoBehaviour
 
     public void Hit()
     {
-        if (!dead)
+        if (!_dead)
         {
             Lives--;
             if (Lives == 0)
@@ -165,8 +204,8 @@ public class Player : MonoBehaviour
             {
                 // show invinsibility mode
                 GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, .5f);
-                dead = true;
-                NextRespawn = Time.time + RespawnDelay;
+                _dead = true;
+                _nextRespawn = Time.time + RespawnDelay;
             }
         }
     }

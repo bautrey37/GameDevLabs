@@ -4,19 +4,19 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 6530179738444782934
-    second: sheet_0
+    second: player
   - first:
       213: 4815327265918950171
-    second: sheet_0
+    second: player
   - first:
       213: 613435604629981061
-    second: sheet_1
+    second: player_bullet
   - first:
       213: -3656531271222932061
     second: life
   - first:
       213: 3930011312167392660
-    second: sheet_3
+    second: enegy_bar
   - first:
       213: -96796154962138083
     second: enemy_1
@@ -40,7 +40,7 @@ TextureImporter:
     second: enemy_bullet_1
   - first:
       213: -3701851516310602662
-    second: sheet_11
+    second: player_laser
   - first:
       213: 5893540339403691780
     second: sheet_12
@@ -158,7 +158,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sheet_0
+      name: player
       rect:
         serializedVersion: 2
         x: 211
@@ -179,7 +179,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheet_1
+      name: player_bullet
       rect:
         serializedVersion: 2
         x: 845
@@ -221,7 +221,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheet_3
+      name: enegy_bar
       rect:
         serializedVersion: 2
         x: 0
@@ -376,7 +376,7 @@ TextureImporter:
         width: 9
         height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -384,6 +384,27 @@ TextureImporter:
       bones: []
       spriteID: fd6856ce063a3ac20800000000000000
       internalID: 3216594195550930655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_laser
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 544
+        width: 13
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5cb01fb8a160acc0800000000000000
+      internalID: -3701851516310602662
       vertices: []
       indices: 
       edges: []
