@@ -6,9 +6,12 @@ public class Bullet : MonoBehaviour
 {
     public float Speed = 1f;
 
+    //private Vector2 direction;
+
+    //void Start(Vector2 direction)
     void Start()
     {
-
+        //this.direction = direction;
     }
 
 
@@ -21,16 +24,4 @@ public class Bullet : MonoBehaviour
     {
         GameObject.Destroy(gameObject);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Enemy enemy = collision.GetComponent<Enemy>();
-        if (enemy != null)
-        {
-            enemy.Hit(5);
-        }
-        GameObject.Destroy(gameObject);
-    }
-
-
 }

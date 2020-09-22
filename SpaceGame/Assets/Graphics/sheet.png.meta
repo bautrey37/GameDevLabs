@@ -13,31 +13,31 @@ TextureImporter:
     second: sheet_1
   - first:
       213: -3656531271222932061
-    second: sheet_2
+    second: life
   - first:
       213: 3930011312167392660
     second: sheet_3
   - first:
       213: -96796154962138083
-    second: sheet_4
+    second: enemy_1
   - first:
       213: -7054820123952135176
-    second: sheet_5
+    second: boss_1
   - first:
       213: 4530623484691778272
-    second: sheet_6
+    second: enemy_2
   - first:
       213: -5581956015464806101
-    second: sheet_7
+    second: explosion_1
   - first:
       213: -2661919970533589962
-    second: sheet_8
+    second: shield_1
   - first:
       213: 3038985000587531000
-    second: sheet_9
+    second: rock_1
   - first:
       213: 3216594195550930655
-    second: sheet_10
+    second: enemy_bullet_1
   - first:
       213: -3701851516310602662
     second: sheet_11
@@ -200,7 +200,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheet_2
+      name: life
       rect:
         serializedVersion: 2
         x: 482
@@ -229,7 +229,7 @@ TextureImporter:
         width: 222
         height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -242,15 +242,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheet_4
+      name: enemy_1
       rect:
         serializedVersion: 2
         x: 425
-        y: 556
+        y: 555
         width: 93
-        height: 84
+        height: 83
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -258,6 +258,132 @@ TextureImporter:
       bones: []
       spriteID: d1cabdfe86c18aef0800000000000000
       internalID: -96796154962138083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_1
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 699
+        width: 91
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f34e8da97e381e90800000000000000
+      internalID: -7054820123952135176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_2
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 302
+        width: 60
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ea88181e0200ee30800000000000000
+      internalID: 4530623484691778272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: explosion_1
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 378
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b298d521498e882b0800000000000000
+      internalID: -5581956015464806101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 506
+        width: 133
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63cb3d7e3e5fe0bd0800000000000000
+      internalID: -2661919970533589962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rock_1
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 476
+        width: 98
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f292cdb1c4ac2a20800000000000000
+      internalID: 3038985000587531000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_bullet_1
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 385
+        width: 9
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd6856ce063a3ac20800000000000000
+      internalID: 3216594195550930655
       vertices: []
       indices: 
       edges: []

@@ -8,11 +8,13 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     public float BulletDelay = 0.3f; // seconds
-    public float RespawnDelay = 2.0f; // seconds
-    public Bullet BulletPrefab;
+    public float RespawnDelay = 1.0f; // seconds
+    public PlayerBullet BulletPrefab;
 
     private float NextRespawn = 0;
     private bool dead;
+
+    private Vector3 lastPosition;
 
     private int _score;
     public int Score {
@@ -70,6 +72,14 @@ public class Player : MonoBehaviour
         InvokeRepeating("launchBullet", 0f, BulletDelay);
     }
 
+    private void launchBullet()
+    {
+        if (!dead)
+        {
+            GameObject.Instantiate<PlayerBullet>(BulletPrefab, transform.position, Quaternion.identity, null);
+        }
+    }
+
     void Update()
     {
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -84,29 +94,34 @@ public class Player : MonoBehaviour
 
         transform.position = pos;
 
-        // rotate the spaceship towards moving direction
+        // TODO Extra: make your ship tilting left or right depending on the direction you are moving.
         //Vector2 moveDirection = GetComponent<Rigidbody2D>().velocity;
-        //if (moveDirection != Vector2.zero)
-        //{
-        //    float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-        //    transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
-        //}
+        var direction = transform.position - lastPosition;
+        Vector2 localDirection = transform.InverseTransformDirection(direction);
+        lastPosition = transform.position;
+
+        //Debug.Log(localDirection);
+        // Comparison of Vector2 is not accurate
+        if (localDirection != Vector2.zero)
+        {
+            //Debug.Log("Not 0 velocity");
+            transform.rotation = Quaternion.Euler(0, 0, GetRotation(localDirection));
+        } 
 
         if (dead && Time.time >= NextRespawn)
         {
-            Debug.Log("Respawning");
             dead = false;
             GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         }
         
     }
 
-    private void launchBullet()
+    private float GetRotation(Vector2 direction)
     {
-        if (!dead)
-        {
-            GameObject.Instantiate<Bullet>(BulletPrefab, transform.position, Quaternion.identity, null);
-        }   
+        return 0f;
+        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
+        //Debug.Log(angle);
+        //return angle;
     }
 
     // https://answers.unity.com/questions/501893/calculating-2d-camera-bounds.html
@@ -126,7 +141,20 @@ public class Player : MonoBehaviour
         if (enemy != null && !dead)
         {
             enemy.Destroy();
+            Hit();
+        }
+        
+    }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Hit()
+    {
+        if (!dead)
+        {
             Lives--;
             if (Lives == 0)
             {
@@ -141,13 +169,5 @@ public class Player : MonoBehaviour
                 NextRespawn = Time.time + RespawnDelay;
             }
         }
-        
     }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-
 }

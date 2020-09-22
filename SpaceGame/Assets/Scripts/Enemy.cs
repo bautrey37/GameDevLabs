@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/** TODO: 
- * rotate towards moving direction
- * 
- */
-
 public class Enemy : MonoBehaviour
 {
     public Vector2 MovementVector;
     public float Health = 10;
+    public EnemyBullet BulletPrefab;
+    public float BulletDelay = 0.3f; // seconds
 
     void Start()
     {
@@ -21,6 +18,24 @@ public class Enemy : MonoBehaviour
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
         return angle;
+    }
+
+    private void OnBecameVisible()
+    {
+        InvokeRepeating("launchBullet", 0f, BulletDelay);
+    }
+
+    private void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void launchBullet()
+    {
+        if (gameObject.activeSelf)
+        {
+            GameObject.Instantiate<EnemyBullet>(BulletPrefab, transform.position, Quaternion.identity, null);
+        }
     }
 
 
