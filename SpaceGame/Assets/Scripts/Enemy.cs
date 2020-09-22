@@ -9,9 +9,11 @@ public class Enemy : MonoBehaviour
     public EnemyBullet BulletPrefab;
     public float BulletDelay = 0.3f; // seconds
 
+    private new SpriteRenderer renderer;
+
     void Start()
     {
-        transform.rotation = Quaternion.Euler(0, 0, GetRotation(MovementVector));
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     private float GetRotation(Vector2 direction)
@@ -41,7 +43,11 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        transform.position += (Vector3)MovementVector * Time.deltaTime;
+        if (renderer.isVisible)
+        {
+            transform.position += (Vector3)MovementVector * Time.deltaTime;
+            transform.rotation = Quaternion.Euler(0, 0, GetRotation(MovementVector));
+        }
     }
 
     public void Hit(float damage)
