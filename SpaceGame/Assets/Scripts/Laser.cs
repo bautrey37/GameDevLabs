@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         deactivate();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // somehow stretch laser to end of screen
+        //transform.localScale.y =  
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.Hit(10);
+        }
     }
 
     public void activate()

@@ -29,6 +29,5 @@ public class PlayerBullet : MonoBehaviour
             enemy.Hit(5);
             GameObject.Destroy(gameObject);
         }
-        
     }
 }

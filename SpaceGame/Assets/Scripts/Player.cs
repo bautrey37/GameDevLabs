@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
         _shieldEnergyCost = 0.002f;
 
         LaserPrefab = GameObject.Instantiate<Laser>(LaserPrefab, transform.position, Quaternion.identity, gameObject.transform);
-        _laserEnergyCost = 0.003f;
+        _laserEnergyCost = 0.004f;
 
         InvokeRepeating("launchBullet", 0f, BulletDelay);
     }
@@ -227,6 +227,7 @@ public class Player : MonoBehaviour
         {
             Lives--;
             ShieldPrefab.deactivate();
+            LaserPrefab.deactivate();
 
             if (Lives == 0)
             {
