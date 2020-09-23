@@ -16,12 +16,6 @@ public class Enemy : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
     }
 
-    private float GetRotation(Vector2 direction)
-    {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
-        return angle;
-    }
-
     private void OnBecameVisible()
     {
         InvokeRepeating("launchBullet", 0f, BulletDelay);
@@ -48,6 +42,12 @@ public class Enemy : MonoBehaviour
             transform.position += (Vector3)MovementVector * Time.deltaTime;
             transform.rotation = Quaternion.Euler(0, 0, GetRotation(MovementVector));
         }
+    }
+
+    private float GetRotation(Vector2 direction)
+    {
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
+        return angle;
     }
 
     public void Hit(float damage)

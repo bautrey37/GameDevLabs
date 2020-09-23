@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerupLife : MonoBehaviour
+public class PowerupSplitter : MonoBehaviour
 {
     public Vector2 MovementVector;
 
@@ -26,7 +26,7 @@ public class PowerupLife : MonoBehaviour
         Player player = collision.GetComponent<Player>();
         if (player != null && !player.isDead())
         {
-            player.Lives++;
+            player.PowerupSplitter = true;
             GameObject.Destroy(gameObject);
         }
     }

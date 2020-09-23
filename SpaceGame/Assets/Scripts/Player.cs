@@ -63,6 +63,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    public bool PowerupSplitter;
+
     void Awake()
     {
         Instance = this;
@@ -82,6 +84,8 @@ public class Player : MonoBehaviour
         LaserPrefab = GameObject.Instantiate<Laser>(LaserPrefab, transform.position, Quaternion.identity, gameObject.transform);
         _laserEnergyCost = 0.004f;
 
+        PowerupSplitter = false;
+
         InvokeRepeating("launchBullet", 0f, BulletDelay);
     }
 
@@ -89,7 +93,23 @@ public class Player : MonoBehaviour
     {
         if (!_dead && !ShieldPrefab.isActive())
         {
-            GameObject.Instantiate<PlayerBullet>(BulletPrefab, transform.position, Quaternion.identity, null);
+            if (PowerupSplitter)
+            {
+                // straight up
+                GameObject.Instantiate<PlayerBullet>(BulletPrefab, transform.position, Quaternion.identity, null);
+
+                // left shoot
+                PlayerBullet leftBullet = GameObject.Instantiate<PlayerBullet>(BulletPrefab, transform.position, Quaternion.identity, null);
+                leftBullet.SetMovementAngle(-10);
+
+                // right shoot
+                PlayerBullet rightBullet = GameObject.Instantiate<PlayerBullet>(BulletPrefab, transform.position, Quaternion.identity, null);
+                rightBullet.SetMovementAngle(10);
+            }
+            else
+            {
+                GameObject.Instantiate<PlayerBullet>(BulletPrefab, transform.position, Quaternion.identity, null);
+            }
         }
     }
 
@@ -242,5 +262,10 @@ public class Player : MonoBehaviour
                 _nextRespawn = Time.time + RespawnDelay;
             }
         }
+    }
+
+    public bool isDead()
+    {
+        return _dead;
     }
 }

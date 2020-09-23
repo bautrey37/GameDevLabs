@@ -6,14 +6,16 @@ public class PlayerBullet : MonoBehaviour
 {
     public float Speed = 10f;
 
-    void Start()
-    {
-        
+    private float _hitPower = 5;
+
+    public void SetMovementAngle(float angle)
+    {   
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     void Update()
     {
-        transform.position += new Vector3(0, 1, 0) * Speed * Time.deltaTime;
+        transform.position += transform.rotation * transform.up * Speed * Time.deltaTime;
     }
 
     private void OnBecameInvisible()
@@ -26,7 +28,7 @@ public class PlayerBullet : MonoBehaviour
         Enemy enemy = collision.GetComponent<Enemy>();
         if (enemy != null)
         {
-            enemy.Hit(5);
+            enemy.Hit(_hitPower);
             GameObject.Destroy(gameObject);
         }
     }
