@@ -1,10 +1,14 @@
 # Game Development Labs using Unity
 
-UT Game Development Class Lab Practices
+UT Game Development Class Lab Practices. https://courses.cs.ut.ee/2020/gamedev/fall
 
 ## Game 1 - Flappy Bird
 
+For Lab 1. 
+
 Deployed at: https://birdgame-brandon.surge.sh/
+
+https://courses.cs.ut.ee/2020/gamedev/fall/Main/Lab1
 
 Tasks (pick 3 of 7):
 
@@ -17,3 +21,9 @@ Tasks (pick 3 of 7):
 - [x] Make each tree spawn with a random color.
 
 ## Game 2 - Space Game
+
+For Lab 2 - 3.
+
+Deployed at: https://spacegame-brandon.surge.sh/
+
+https://courses.cs.ut.ee/2020/gamedev/fall/Main/Lab3
