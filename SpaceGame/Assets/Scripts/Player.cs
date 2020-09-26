@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private float _nextRespawn = 0;
     private bool _dead;
 
-    private Vector3 _lastPosition;
+    //private Vector3 _lastPosition;
 
     private int _score;
     public int Score
@@ -75,17 +75,17 @@ public class Player : MonoBehaviour
     {
         Score = 0;
         Energy = 1;
-        _energyRecharge = 0.001f;
+        _energyRecharge = 0.002f;
         Lives = 3;
         _dead = false;
 
         ShieldPrefab = GameObject.Instantiate<Shield>(ShieldPrefab, transform.position, Quaternion.identity, gameObject.transform);
-        _shieldEnergyCost = 0.002f;
+        _shieldEnergyCost = 0.001f;
 
         //LaserPrefab = GameObject.Instantiate<Laser>(LaserPrefab, transform.position, Quaternion.identity, gameObject.transform);
         laser = gameObject.transform.GetChild(0).gameObject;
         laser.SetActive(false);
-        _laserEnergyCost = 0.004f;
+        _laserEnergyCost = 0.003f;
 
         PowerupSplitter = false;
 
@@ -132,25 +132,24 @@ public class Player : MonoBehaviour
 
         // TODO Extra: make your ship tilting left or right depending on the direction you are moving.
         //Vector2 moveDirection = GetComponent<Rigidbody2D>().velocity;
-        var direction = transform.position - _lastPosition;
-        Vector2 localDirection = transform.InverseTransformDirection(direction);
-        _lastPosition = transform.position;
+        //var direction = transform.position - _lastPosition;
+        //Vector2 localDirection = transform.InverseTransformDirection(direction);
+        //_lastPosition = transform.position;
 
         //Debug.Log(localDirection);
         // Comparison of Vector2 is not accurate
-        if (localDirection != Vector2.zero)
-        {
-            //Debug.Log("Not 0 velocity");
-            transform.rotation = Quaternion.Euler(0, 0, GetRotation(localDirection));
-        }
+        //if (localDirection != Vector2.zero)
+        //{
+        //    //Debug.Log("Not 0 velocity");
+        //    transform.rotation = Quaternion.Euler(0, 0, GetRotation(localDirection));
+        //}
 
         if (!_dead)
         {
             handleShieldControls();
             handleLaserControls();
 
-            // TODO check if laser is active
-            if (!ShieldPrefab.isActive())
+            if (!ShieldPrefab.isActive() && !laser.activeSelf)
             {
                 Energy += _energyRecharge;
             }
@@ -162,14 +161,14 @@ public class Player : MonoBehaviour
             GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         }
     }
-
+/*
     private float GetRotation(Vector2 direction)
     {
         return 0f;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
-        //Debug.Log(angle);
-        //return angle;
-    }
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
+        Debug.Log(angle);
+        return angle;
+    }*/
 
     // https://answers.unity.com/questions/501893/calculating-2d-camera-bounds.html
     public static Bounds OrthographicBounds(Camera camera)
@@ -226,18 +225,10 @@ public class Player : MonoBehaviour
         if (laser.activeSelf)
         {
             Energy -= _laserEnergyCost;
+            // set end point to be screen end
+            laser.GetComponent<LineRenderer>().SetPosition(1, new Vector3(0, Screen.height - Input.mousePosition.y, 0));
+            Debug.Log(Screen.height - Input.mousePosition.y);
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Enemy enemy = collision.GetComponent<Enemy>();
-        if (enemy != null && !_dead)
-        {
-            enemy.Destroy();
-            Hit();
-        }
-
     }
 
     public void Restart()
@@ -269,7 +260,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public bool isDead()
+    public bool IsDead()
     {
         return _dead;
     }
