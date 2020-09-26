@@ -35,6 +35,13 @@ public class RaycastPosition : MonoBehaviour
          * Extra:
          *  Also check that we are not clicking on the player
          */
+
+        if (Input.GetMouseButton(0))
+        {
+            RaycastHit hit;
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition); 
+
+        }
          
 	}
     

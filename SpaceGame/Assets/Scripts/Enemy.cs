@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float BulletDelay = 0.3f; // seconds
 
     private new SpriteRenderer renderer;
+    private int point = 2;
 
     void Start()
     {
@@ -61,10 +62,10 @@ public class Enemy : MonoBehaviour
 
     public void Destroy()
     {
-        Player.Instance.Score += 1;
+        Debug.Log("Enemy Destroyed!");
+        Player.Instance.Score += point;
 
         gameObject.SetActive(false);
-        //GameObject.Destroy(gameObject);
     }
 
 }
