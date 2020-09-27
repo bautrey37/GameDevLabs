@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerupSplitter : MonoBehaviour
+public enum PowerupType
 {
+    Life,
+    ShooterSplitter
+}
+
+public class Powerup : MonoBehaviour
+{
+    public PowerupType powerupType;
     public Vector2 MovementVector;
 
     private new SpriteRenderer renderer;
 
     void Start()
-    {
+    { 
         renderer = GetComponent<SpriteRenderer>();
     }
 
@@ -26,7 +33,15 @@ public class PowerupSplitter : MonoBehaviour
         Player player = collision.GetComponent<Player>();
         if (player != null && !player.IsDead())
         {
-            player.PowerupSplitter = true;
+            if (powerupType == PowerupType.Life)
+            {
+                player.Lives++;
+
+            }
+            if (powerupType == PowerupType.ShooterSplitter)
+            {
+                player.PowerupSplitter = true;
+            }
             GameObject.Destroy(gameObject);
         }
     }

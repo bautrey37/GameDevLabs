@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     public EnemyBullet BulletPrefab;
     public float BulletDelay = 0.3f; // seconds
 
+    public GameObject ParticlePrefab;
+
     private new SpriteRenderer renderer;
     private int point = 2;
 
@@ -46,7 +48,7 @@ public class Enemy : MonoBehaviour
     }
 
     private float GetRotation(Vector2 direction)
-    {
+    { 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
         return angle;
     }
@@ -73,7 +75,8 @@ public class Enemy : MonoBehaviour
 
     public void Destroy()
     {
-        Debug.Log("Enemy Destroyed!");
+        Instantiate(ParticlePrefab, transform.position, Quaternion.identity, null);
+
         Player.Instance.Score += point;
 
         gameObject.SetActive(false);

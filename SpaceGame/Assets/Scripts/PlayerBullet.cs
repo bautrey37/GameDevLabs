@@ -6,7 +6,7 @@ public class PlayerBullet : MonoBehaviour
 {
     public float Speed = 10f;
 
-    private float _hitPower = 5;
+    private float _hitPower = 3;
 
     public void SetMovementAngle(float angle)
     {   

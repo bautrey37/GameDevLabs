@@ -96,10 +96,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ab0cbc487fc4d58806ed8912e97e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementVector: {x: 0, y: -1}
+  MovementVector: {x: 2, y: 0}
   Health: 10
   BulletPrefab: {fileID: 8054600164913864790, guid: e78c94bc0a66541b397fa4bd653cd5f2, type: 3}
   BulletDelay: 0.5
+  ParticlePrefab: {fileID: 4159383380190678687, guid: 1370ab2a6e30b45848da977895711695, type: 3}
 --- !u!60 &7205119048282578584
 PolygonCollider2D:
   m_ObjectHideFlags: 0

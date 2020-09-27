@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1589112260698512394}
   - component: {fileID: 1589112260698512389}
   - component: {fileID: 1589112260698512388}
-  - component: {fileID: 1007621695310395887}
+  - component: {fileID: 7619782101644660649}
   m_Layer: 0
   m_Name: PowerupLife
   m_TagString: Untagged
@@ -138,7 +138,7 @@ PolygonCollider2D:
       - {x: 0.11, y: -0.015}
       - {x: 0.11, y: 0.074999996}
       - {x: 0.08, y: 0.105}
---- !u!114 &1007621695310395887
+--- !u!114 &7619782101644660649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +147,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1589112260698512393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 649272eeb353f4f8c9e2aa8c07e268ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fb56f702b7504b65a462b45bff4056c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerupType: 0
   MovementVector: {x: 0, y: 0}
