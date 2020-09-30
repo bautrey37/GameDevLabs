@@ -62,6 +62,8 @@ public class HUD : MonoBehaviour
     {
         EndGameText.text = "You Won!";
         EndGamePanel.SetActive(true);
+        Player.Instance.Invincible();
+        Player.Instance.RespawnDelay = 999f;
     }
 
     public void ShowLoseScreen()

@@ -253,8 +253,7 @@ public class Player : MonoBehaviour
             else
             {
                 // show invinsibility mode
-                GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, .5f);
-                _nextRespawn = Time.time + RespawnDelay;
+                Invincible();
             }
         }
     }
@@ -262,5 +261,11 @@ public class Player : MonoBehaviour
     public bool IsDead()
     {
         return _dead;
+    }
+
+    public void Invincible()
+    {
+        GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, .5f);
+        _nextRespawn = Time.time + RespawnDelay;
     }
 }

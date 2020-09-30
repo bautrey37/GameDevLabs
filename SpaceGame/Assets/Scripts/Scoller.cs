@@ -15,5 +15,10 @@ public class Scoller : MonoBehaviour
         {
             HUD.Instance.StartLevel(HUD.Instance.CurrentLevel + 1);
         }
+
+        if (!Player.Instance.IsDead() && HUD.Instance.CurrentLevel == 2 && gameObject.transform.position.y >= 34)
+        {
+            HUD.Instance.ShowWinScreen();
+        }
     }
 }
