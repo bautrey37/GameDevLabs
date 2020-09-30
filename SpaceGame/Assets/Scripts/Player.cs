@@ -1,5 +1,4 @@
-﻿using UnityEngine.SceneManagement;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -161,6 +160,11 @@ public class Player : MonoBehaviour
             _dead = false;
             GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         }
+
+        if (gameObject.transform.position.y > 35)
+        {
+            HUD.Instance.StartLevel(2);
+        }
     }
 /*
     private float GetRotation(Vector2 direction)
@@ -229,11 +233,6 @@ public class Player : MonoBehaviour
             // set end point to be screen end
             laser.GetComponent<LineRenderer>().SetPosition(1, new Vector3(0, Screen.height - Input.mousePosition.y, 0));
         }
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Hit()

@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public float MoveSpeed = 1;
     public Vector2 MovementVector;
     public float Health = 10;
     public int PointWorth = 2;
 
+    public bool IsWaveMovement = false;
+    private float frequency = 20.0f;  // Speed of sine movement
+    private float magnitude = 20f;   // Size of sine movement
+    private Vector3 axis;
+
     public GameObject ParticlePrefab;
 
     private new SpriteRenderer renderer;
-    
+
+    private Vector3 pos;
 
     void Start()
     {
         renderer = GetComponent<SpriteRenderer>();
+        pos = transform.position;
+        axis = transform.right;
     }
 
     private void OnBecameInvisible()
@@ -27,8 +36,16 @@ public class Enemy : MonoBehaviour
     {
         if (renderer.isVisible)
         {
-            transform.position += (Vector3)MovementVector * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(0, 0, GetRotation(MovementVector));
+            if(IsWaveMovement)
+            {
+                pos += transform.up * Time.deltaTime * MoveSpeed;
+                transform.position = pos + axis * Mathf.Sin(Time.time * frequency) * magnitude;
+            }
+            else
+            {
+                transform.position += (Vector3)MovementVector * Time.deltaTime;
+                transform.rotation = Quaternion.Euler(0, 0, GetRotation(MovementVector));
+            }
         }
     }
 

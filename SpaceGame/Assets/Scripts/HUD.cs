@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using UnityEngine.SceneManagement;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,8 +16,13 @@ public class HUD : MonoBehaviour
     public Text ScoreText;
 
     public GameObject EndGamePanel;
-    public TextMeshProUGUI endGameText;
+    public TextMeshProUGUI EndGameText;
     public Button RestartButon;
+
+    public GameObject LevelPanel;
+    public TextMeshProUGUI LevelText;
+    private float levelShowTime = 2; //seconds
+    public int CurrentLevel;
 
     public void Awake()
     {
@@ -26,6 +32,7 @@ public class HUD : MonoBehaviour
     public void Start()
     {
         EndGamePanel.SetActive(false);
+        ShowLevelScreen(CurrentLevel);
     }
 
     public void SetScore(int score)
@@ -53,18 +60,38 @@ public class HUD : MonoBehaviour
 
     public void ShowWinScreen()
     {
-        //endGameText.text = "You Won!";
+        EndGameText.text = "You Won!";
+        EndGamePanel.SetActive(true);
     }
 
     public void ShowLoseScreen()
     {
-        endGameText.text = "You Lost!";
+        EndGameText.text = "You Lost!";
         EndGamePanel.SetActive(true);
+    }
+
+    public void ShowLevelScreen(int level)
+    {
+        LevelText.text = string.Format("Level {0}", level);
+        LevelPanel.SetActive(true);
+        StartCoroutine(deactivateLevelPanel());
+    }
+
+    private IEnumerator deactivateLevelPanel()
+    {
+        yield return new WaitForSeconds(levelShowTime);
+        LevelPanel.SetActive(false);
     }
 
     public void Restart()
     {
         EndGamePanel.SetActive(false);
-        Player.Instance.Restart();
+        StartLevel(1);
+    }
+
+    public void StartLevel(int level)
+    {
+        SceneManager.LoadScene(level - 1);
+        ShowLevelScreen(level);
     }
 }
