@@ -6,6 +6,7 @@ public class CircleMovement : MonoBehaviour
 {
 	float timeCounter = 0;
 	float speed = 2;
+	float diameter = 5;
 
 	void Update () {
 		//Todo Implement circular movement here

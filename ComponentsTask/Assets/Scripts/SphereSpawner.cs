@@ -38,6 +38,7 @@ public class SphereSpawner : MonoBehaviour
         for (int i = Spheres.Length - 1; i >= 0; i--)
         {
             Spheres[i] = Instantiate(SpherePrefab, transform, false);
+            Debug.Log(string.Format("Spawn sphere {0}"));
         }
     }
 

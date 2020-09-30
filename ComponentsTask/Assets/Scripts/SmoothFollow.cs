@@ -70,13 +70,12 @@ namespace UnityStandardAssets.Utility
 			//if (Input.mouseScrollDelta)
 			float scroll = Input.GetAxis("Mouse ScrollWheel");
 			distance = Mathf.Clamp(distance - scroll, 1, 5);
-			height = Mathf.Clamp(height - scroll*2, 1, 10);
+			height = Mathf.Clamp(height - scroll * 1.5f, 1, 10);
 
 			// TODO: Read input and modify rotation offset
 			if (Input.GetMouseButton(1))
 			{
-				rotationOffset = Input.GetAxis("Mouse X");
-				// TODO not working completely. The camera shakes but never moves
+				rotationOffset += Input.GetAxis("Mouse X") * 3;
 			}
 
 			float wantedHeight = target.position.y + height;
