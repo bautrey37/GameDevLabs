@@ -26,6 +26,7 @@ public class PlayerBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemy = collision.GetComponent<Enemy>();
+  
         if (enemy != null)
         {
             enemy.Hit(_hitPower);

@@ -20,6 +20,12 @@ public class Shield : MonoBehaviour
         {
             enemyBullet.Destroy();
         }
+
+        EnemySeekBullet enemySeekBullet = collision.GetComponent<EnemySeekBullet>();
+        if (enemySeekBullet != null)
+        {
+            enemySeekBullet.Destroy();
+        }
     }
 
     public void activate()

@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    private int _damage = 3;
+    private float _damage = 0.3f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemy = collision.GetComponent<Enemy>();
         if (enemy != null)
         {
-            Debug.Log("laser hits enemy");
             enemy.Hit(_damage);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            enemy.Hit(_damage);
+        }
+    }
+
 }

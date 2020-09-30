@@ -11,8 +11,9 @@ public class Player : MonoBehaviour
     public float RespawnDelay = 1.0f; // seconds
     public PlayerBullet BulletPrefab;
     public Shield ShieldPrefab;
-    //public Laser LaserPrefab;
     private GameObject laser;
+
+    public GameObject ParticlePrefab;
 
     private float _nextRespawn = 0;
     private bool _dead;
@@ -227,7 +228,6 @@ public class Player : MonoBehaviour
             Energy -= _laserEnergyCost;
             // set end point to be screen end
             laser.GetComponent<LineRenderer>().SetPosition(1, new Vector3(0, Screen.height - Input.mousePosition.y, 0));
-            Debug.Log(Screen.height - Input.mousePosition.y);
         }
     }
 
@@ -238,13 +238,13 @@ public class Player : MonoBehaviour
 
     public void Hit()
     {
-        Debug.Log("Player Hit!");
         if (!_dead)
         {
             Lives--;
             ShieldPrefab.deactivate();
             laser.SetActive(false);
             _dead = true;
+            Instantiate(ParticlePrefab, transform.position, Quaternion.identity, null);
 
             if (Lives == 0)
             {

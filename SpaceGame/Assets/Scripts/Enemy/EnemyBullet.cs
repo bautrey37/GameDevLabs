@@ -8,7 +8,6 @@ public class EnemyBullet : MonoBehaviour
 
     void Start()
     {
-
     }
 
     void Update()
