@@ -11,7 +11,7 @@ public class Scoller : MonoBehaviour
     {
         transform.position += new Vector3(0, 1, 0) * Speed * Time.deltaTime;
 
-        if (gameObject.transform.position.y > 35)
+        if (!Player.Instance.IsDead() && gameObject.transform.position.y > 35)
         {
             HUD.Instance.StartLevel(HUD.Instance.CurrentLevel + 1);
         }

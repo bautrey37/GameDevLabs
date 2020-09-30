@@ -10,8 +10,8 @@ public class Enemy : MonoBehaviour
     public int PointWorth = 2;
 
     public bool IsWaveMovement = false;
-    private float frequency = 20.0f;  // Speed of sine movement
-    private float magnitude = 20f;   // Size of sine movement
+    private float frequency = 5.0f;  // Speed of sine movement
+    private float magnitude = 5f;   // Size of sine movement
     private Vector3 axis;
 
     public GameObject ParticlePrefab;
@@ -38,8 +38,9 @@ public class Enemy : MonoBehaviour
         {
             if(IsWaveMovement)
             {
-                pos += transform.up * Time.deltaTime * MoveSpeed;
+                pos += (Vector3)MovementVector * Time.deltaTime * MoveSpeed;
                 transform.position = pos + axis * Mathf.Sin(Time.time * frequency) * magnitude;
+                // TODO rotation??
             }
             else
             {

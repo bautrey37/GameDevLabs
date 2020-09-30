@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    private float _damage = 0.3f;
+    private float _damage = 0.5f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
