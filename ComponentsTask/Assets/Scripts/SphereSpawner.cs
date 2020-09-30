@@ -26,7 +26,7 @@ public class SphereSpawner : MonoBehaviour
 
     public void SpawnSpheres(int count)
     {
-        if(count < 1)
+        if (count < 1)
             return;
 
         Spheres = new CircleMovement[count];
@@ -34,7 +34,11 @@ public class SphereSpawner : MonoBehaviour
         //Distance between spheres should be uniform.
 
         //Instantiates a prefab, sets parent of new object to transform and repositions the obj based on parents location.
-        Spheres[0] = Instantiate(SpherePrefab, transform, false);
+        //Spheres[0] = Instantiate(SpherePrefab, transform, false);
+        for (int i = Spheres.Length - 1; i >= 0; i--)
+        {
+            Spheres[i] = Instantiate(SpherePrefab, transform, false);
+        }
     }
 
     public void ClearSpheres()

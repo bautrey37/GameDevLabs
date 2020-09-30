@@ -16,7 +16,7 @@ public class GameSaver : MonoBehaviour
      *  Read the data when the script starts. We can use Awake and OnDisable for this.
      *  Also set the movement targets position.
      *
-     * Extra:
+     * TODO Extra:
      *  Also save the state of the camera, so that the game would resume with same view.
      *  Use scriptable objects to save all the data as a single string. We will learn about
      *  scriptable objects in a later practice, so this challenge is only recommended for those with
@@ -25,12 +25,18 @@ public class GameSaver : MonoBehaviour
 
     void Awake()
     {
-
+        if (PlayerPrefs.HasKey("PlayerPos"))
+        {
+            Vector3 pos = JsonUtility.FromJson<Vector3>(PlayerPrefs.GetString("PlayerPos"));
+            transform.position = pos;
+            GetComponent<NavMeshAgent>().Warp(pos);
+            GameObject.FindObjectOfType<RaycastPosition>().transform.position = pos;
+        }
     }
 
     void OnDisable()
     {
-
+        PlayerPrefs.SetString("PlayerPos", JsonUtility.ToJson(transform.position));
 
     }
 }

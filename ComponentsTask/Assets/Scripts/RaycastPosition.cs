@@ -38,9 +38,12 @@ public class RaycastPosition : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            RaycastHit hit;
+            RaycastHit hit; 
             Ray ray = cam.ScreenPointToRay(Input.mousePosition); 
-
+            if (Physics.Raycast(ray, out hit))
+            {
+                transform.position = hit.point;
+            }
         }
          
 	}

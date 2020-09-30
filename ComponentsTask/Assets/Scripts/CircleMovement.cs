@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class CircleMovement : MonoBehaviour
 {
-	
+	float timeCounter = 0;
+	float speed = 2;
+
 	void Update () {
 		//Todo Implement circular movement here
-	    transform.localPosition = new Vector3(Mathf.PingPong(Time.time,5f) - 2.5f, 1f, 0f);
+		timeCounter += Time.deltaTime * speed;
+
+		float x = Mathf.Cos(timeCounter) * 2 - 1;
+		float y = 1f;
+		float z = Mathf.Sin(timeCounter)* 2 - 1;
+
+	    transform.localPosition = new Vector3(x, y, z);
 	}
 
 }

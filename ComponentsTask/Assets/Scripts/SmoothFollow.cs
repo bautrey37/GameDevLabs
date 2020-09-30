@@ -66,10 +66,18 @@ namespace UnityStandardAssets.Utility
 			if (!target)
 				return;
 
-            // TODO: Read input and modify distance and height
+			// TODO: Read input and modify distance and height
+			//if (Input.mouseScrollDelta)
+			float scroll = Input.GetAxis("Mouse ScrollWheel");
+			distance = Mathf.Clamp(distance - scroll, 1, 5);
+			height = Mathf.Clamp(height - scroll*2, 1, 10);
 
-            // TODO: Read input and modify rotation offset
-
+			// TODO: Read input and modify rotation offset
+			if (Input.GetMouseButton(1))
+			{
+				rotationOffset = Input.GetAxis("Mouse X");
+				// TODO not working completely. The camera shakes but never moves
+			}
 
 			float wantedHeight = target.position.y + height;
 
@@ -84,7 +92,7 @@ namespace UnityStandardAssets.Utility
 
 			// Convert the angle into a rotation 
             // TODO: Apply the rotation to correct axis
-			Quaternion currentRotation = Quaternion.Euler(0, 0, 0);
+			Quaternion currentRotation = Quaternion.Euler(0, rotationOffset, 0);
 
 			// Set the position of the camera on the x-z plane to:
 			// distance meters behind the target
