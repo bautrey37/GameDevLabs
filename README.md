@@ -4,7 +4,7 @@ UT Game Development Class Lab Practices. https://courses.cs.ut.ee/2020/gamedev/f
 
 ## Game 1 - Flappy Bird
 
-For Lab 1. 
+For Lab 1.
 
 Deployed at: https://birdgame-brandon.surge.sh/
 
@@ -27,3 +27,9 @@ For Lab 2 - 3.
 Deployed at: https://spacegame-brandon.surge.sh/
 
 https://courses.cs.ut.ee/2020/gamedev/fall/Main/Lab3
+
+## Game 3 - 3D tutorial (Components Task)
+
+Instructions are written into the 3D world where you need to implement the behavior to get to the end.
+
+## Game 4 - Lab 5
