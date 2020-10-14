@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Sword
   Cost: 1
-  Sprite: {fileID: 8499785631195158734, guid: 80ffe71bfb7e343b0a5cc732c4998558, type: 3}
+  Sprite: {fileID: 3818666190233207661, guid: 80ffe71bfb7e343b0a5cc732c4998558, type: 3}
