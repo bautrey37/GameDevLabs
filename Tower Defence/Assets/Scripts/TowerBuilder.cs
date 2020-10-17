@@ -1,13 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TowerBuilder : MonoBehaviour
 {
-    public Tower TowerPrefab;
-
     public Color AllowColor;
     public Color BlockColor;
+
+    private TowerData CurrentTowerData;
+
+    private void Awake()
+    {
+        Events.OnTowerSelected += TowerSelected;
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        Events.OnTowerSelected -= TowerSelected;
+    }
 
     void Update()
     {
@@ -62,6 +74,12 @@ public class TowerBuilder : MonoBehaviour
         }
     }
 
+    private void TowerSelected(TowerData data)
+    {
+        gameObject.SetActive(true);
+        CurrentTowerData = data;
+    }
+
     void Build()
     {
         //Verify that building area is free of other towers. (Turn this into a method)
@@ -70,8 +88,11 @@ public class TowerBuilder : MonoBehaviour
         //Disable the Tower Builder gameobject
 
         if (!IsFree(transform.position)) return;
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
         // TODO remove gold from player
-        GameObject.Instantiate(TowerPrefab, transform.position, Quaternion.identity, null);
+
+        GameObject.Instantiate(CurrentTowerData.TowerPrefab, transform.position, Quaternion.identity, null);
         gameObject.SetActive(false);
     }
 }
