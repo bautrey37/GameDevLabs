@@ -22,6 +22,15 @@ public class WaypointFollower : MonoBehaviour
         if(distance < float.Epsilon)
         {
             Waypoint = Waypoint.GetNextWaypoint();
+            if (Waypoint == null)
+            {
+                DestinationReached();
+            }
         }
+    }
+
+    void DestinationReached()
+    {
+        GameObject.Destroy(this.gameObject);
     }
 }
