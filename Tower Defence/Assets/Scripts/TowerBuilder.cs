@@ -72,5 +72,6 @@ public class TowerBuilder : MonoBehaviour
         if (!IsFree(transform.position)) return;
         // TODO remove gold from player
         GameObject.Instantiate(TowerPrefab, transform.position, Quaternion.identity, null);
+        gameObject.SetActive(false);
     }
 }
