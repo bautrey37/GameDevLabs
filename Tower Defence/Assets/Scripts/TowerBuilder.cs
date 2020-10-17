@@ -76,8 +76,13 @@ public class TowerBuilder : MonoBehaviour
 
     private void TowerSelected(TowerData data)
     {
-        gameObject.SetActive(true);
         CurrentTowerData = data;
+
+        SpriteRenderer[] renderers = gameObject.GetComponentsInChildren<SpriteRenderer>();
+        renderers[0].sprite = CurrentTowerData.Icon;
+        renderers[1].sprite = null;
+
+        gameObject.SetActive(true);
     }
 
     void Build()

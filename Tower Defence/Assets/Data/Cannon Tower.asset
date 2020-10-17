@@ -16,4 +16,4 @@ MonoBehaviour:
   Cost: 10
   Shortcut: C
   Icon: {fileID: -6929114766283725420, guid: 364f9ba8959b3463fa37bc540c6684ba, type: 3}
-  TowerPrefab: {fileID: 7934588432194610080, guid: 165148e5470304b089c6cd5ee65d04f9, type: 3}
+  TowerPrefab: {fileID: 7934588432194610080, guid: b3f996bfe9e534e52802ea0c4277905d, type: 3}
