@@ -14,6 +14,7 @@ public class Tower : MonoBehaviour
     private void Awake()
     {
         EnemiesInRange = new List<Health>();
+        nextShootTime = Time.time + ShootDelay;
     }
 
     private void Update()
