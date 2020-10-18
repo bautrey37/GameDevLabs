@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    public Waypoint Next;
+    public List<Waypoint> NextWaypoints;
 
     public Waypoint GetNextWaypoint()
     {
-        return Next;
+        if (NextWaypoints.Count == 0) return null;
+        return NextWaypoints[Random.Range(0, NextWaypoints.Count)];
     }
 
     void OnDrawGizmos()
     {
-        if (Next == null) return;
+        if (NextWaypoints == null) return;
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, Next.transform.position);
+        foreach (Waypoint waypoint in NextWaypoints)
+        {
+            Gizmos.DrawLine(transform.position, waypoint.transform.position);
+        }
+        
     }
 }
