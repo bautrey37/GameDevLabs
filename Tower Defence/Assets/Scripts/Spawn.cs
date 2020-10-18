@@ -8,6 +8,7 @@ public class Spawn : MonoBehaviour
     public float TimeBetweenSpawn = 0.5f;
     public float TimeBetweenWaves = 2;
     public int EnemiesInWave = 5;
+    public float GameStartDelay = 3f;
 
     private float NextSpawnTime = 0;
     private float NextWaveTime = 0;
@@ -22,6 +23,7 @@ public class Spawn : MonoBehaviour
 
     void Update()
     {
+        if (Time.time < GameStartDelay) return;
         if (SpawnCount < EnemiesInWave)
         {
             if (Time.time > NextSpawnTime)
@@ -41,14 +43,14 @@ public class Spawn : MonoBehaviour
 
     void SpawnEnemy()
     {
-        WaypointFollower follower = GameObject.Instantiate(FollowerPrefab, transform.position, Quaternion.identity, null);
-        follower.Waypoint = waypoint;
         NextSpawnTime = Time.time + TimeBetweenSpawn;
         SpawnCount++;
         if (SpawnCount >= EnemiesInWave)
         {
             NextWaveTime = Time.time + TimeBetweenWaves;
         }
+        WaypointFollower follower = GameObject.Instantiate(FollowerPrefab, transform.position, Quaternion.identity, null);
+        follower.Waypoint = waypoint;
     }
 
     void StartNewWave()
