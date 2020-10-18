@@ -13,6 +13,7 @@ public class TowerCardPresenter : MonoBehaviour
     public Image IconImage;
 
     private Button button;
+    private KeyCode keyCode;
 
     public void Awake()
     {
@@ -27,6 +28,15 @@ public class TowerCardPresenter : MonoBehaviour
             CostText.text = TowerData.Cost.ToString();
             ShortcutText.text = TowerData.Shortcut;
             IconImage.sprite = TowerData.Icon;
+            keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), ShortcutText.text);
+        }
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(keyCode))
+        {
+            Pressed();
         }
     }
 
