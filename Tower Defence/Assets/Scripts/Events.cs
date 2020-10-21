@@ -20,5 +20,8 @@ public static class Events
     public static int RequestLives() => OnRequestLives?.Invoke() ?? 0;
 
     public static event Action<bool> OnEndLevel;
-    public static void SetEndLevel(bool isWin) => OnEndLevel?.Invoke(isWin);
+    public static void EndLevel(bool isWin) => OnEndLevel?.Invoke(isWin);
+
+    public static event Action<ScenarioData> OnStartLevel;
+    public static void StartLevel(ScenarioData data) => OnStartLevel?.Invoke(data);
 }

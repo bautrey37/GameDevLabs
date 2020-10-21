@@ -1,32 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScenarioController : MonoBehaviour
 {
     public TextMeshProUGUI GoldText;
     public TextMeshProUGUI LivesText;
 
-    private int Gold = 40;
-    private int Lives = 3;
+    public GameObject EndGamePanel;
+    public TextMeshProUGUI EndGameText;
+    public Button EndGameButton;
 
-    private bool isLevelRunning;
+    private int Gold;
+    private int Lives;
+
+    private bool levelRunning;
+    private ScenarioData scenarioData;
     
     private void Awake()
     {
         Events.OnSetGold += OnSetGold;
-        Events.OnRequestGold += OnRequestGold;
-
         Events.OnSetLives += OnSetLives;
+
+        Events.OnRequestGold += OnRequestGold;
         Events.OnRequestLives += OnRequestLives;
+
+        EndGamePanel.SetActive(false);
+        EndGameButton.onClick.AddListener(BackToMenuClick);
     }
 
     public void Start()
     {
-        Events.SetGold(Gold);
 
-        StartLevel();
+        OnStartLevel();
     }
 
     private void OnDestroy()
@@ -35,10 +44,35 @@ public class ScenarioController : MonoBehaviour
         Events.OnRequestGold -= OnRequestGold;
     }
 
-    private void StartLevel()
+    private void OnStartLevel()
     {
         // add spawn delay
         // spawn enemies
+        //Events.SetLives(scenarioData.Lives);
+        //Events.SetGold(scenarioData.StartingGold);
+
+        levelRunning = true;
+    }
+
+    private void OnEndLevel(bool value)
+    {
+        levelRunning = false;
+
+        EndGamePanel.SetActive(true);
+        if (value)
+        {
+            EndGameText.text = "VICTORY";
+        }
+        else
+        {
+            EndGameText.text = "LOST";
+        }
+    }
+
+    private void BackToMenuClick()
+    {
+        MenuPresenter.Instance?.gameObject.SetActive(true);
+        SceneManager.LoadScene(0);
     }
 
     private void WinLevel()
@@ -56,18 +90,13 @@ public class ScenarioController : MonoBehaviour
         Gold = amount;
     }
 
-    private int OnRequestGold()
-    {
-        return Gold;
-    }
+    
 
     private void OnSetLives(int amount)
     {
         Lives = amount;
     }
 
-    private int OnRequestLives()
-    {
-        return Lives;
-    }
+    private int OnRequestGold() => Gold;
+    private int OnRequestLives() => Lives;
 }

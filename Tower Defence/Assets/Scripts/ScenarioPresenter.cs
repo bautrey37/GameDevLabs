@@ -26,7 +26,7 @@ public class ScenarioPresenter : MonoBehaviour
 
     private void OnClick()
     {
-
+        MenuPresenter.Instance.ScenarioSelected(ScenarioData);
     }
 
 }
