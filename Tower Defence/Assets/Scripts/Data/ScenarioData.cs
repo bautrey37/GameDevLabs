@@ -11,4 +11,5 @@ public class ScenarioData : ScriptableObject
     public int StartingGold = 5;
 
     public WaveData[] Waves;
+    public TowerData[] Towers;
 }
