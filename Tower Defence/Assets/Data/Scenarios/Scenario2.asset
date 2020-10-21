@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7b38ca30d81249b6a89d79885fcf314, type: 3}
+  m_Name: Scenario2
+  m_EditorClassIdentifier: 
+  PresentedName: Level 1 Hard
+  SceneName: SampleScene
+  Lives: 5
+  StartingGold: 5
+  Waves:
+  - EnemyType: {fileID: 11400000, guid: 21824664884514c10902f4801dc4c0b9, type: 2}
+    NumberOfEnemies: 6
+    TimeBetweenSpawns: 0.5
+  - EnemyType: {fileID: 11400000, guid: b5064172cca8748ef97cb89ff1fc6149, type: 2}
+    NumberOfEnemies: 4
+    TimeBetweenSpawns: 0.8
+  - EnemyType: {fileID: 11400000, guid: 84255e495c020427d9f7c9098e1a1883, type: 2}
+    NumberOfEnemies: 3
+    TimeBetweenSpawns: 1
+  Towers:
+  - {fileID: 11400000, guid: bafd56ac26ecb4013bea51c5d3acce59, type: 2}
+  - {fileID: 11400000, guid: 5ab15b7d7a8da4ba5aea641d75a60c60, type: 2}
