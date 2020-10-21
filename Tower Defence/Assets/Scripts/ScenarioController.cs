@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ScenarioController : MonoBehaviour
 {
-    public int Gold = 40;
-    public int Lives = 3;
+    public TextMeshProUGUI GoldText;
+    public TextMeshProUGUI LivesText;
 
+    private int Gold = 40;
+    private int Lives = 3;
+
+    private bool isLevelRunning;
+    
     private void Awake()
     {
         Events.OnSetGold += OnSetGold;

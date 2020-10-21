@@ -30,6 +30,13 @@ public class TowerCardPresenter : MonoBehaviour
             IconImage.sprite = TowerData.Icon;
             keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), ShortcutText.text);
         }
+
+        Events.OnSetGold += OnSetGold;
+    }
+
+    private void OnDestroy()
+    {
+        Events.OnSetGold -= OnSetGold;
     }
 
     public void Update()
@@ -43,5 +50,17 @@ public class TowerCardPresenter : MonoBehaviour
     public void Pressed()
     {
         Events.SelectTower(TowerData);
+    }
+
+    void OnSetGold(int value)
+    {
+        if (TowerData.Cost > value)
+        {
+            button.interactable = false;
+        }
+        else
+        {
+            button.interactable = true;
+        }
     }
 }

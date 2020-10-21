@@ -66,6 +66,12 @@ public class TowerBuilder : MonoBehaviour
         return true;
     }
 
+    bool canBuild()
+    {
+        // check if enough gold to build
+        return true;
+    }
+
     void TintSprite(Color col)
     {
         SpriteRenderer[] renderers = gameObject.GetComponentsInChildren<SpriteRenderer>();
@@ -97,6 +103,7 @@ public class TowerBuilder : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
         // TODO remove gold from player
+        //Events.SetGold()
 
         GameObject.Instantiate(CurrentTowerData.TowerPrefab, transform.position, Quaternion.identity, null);
         gameObject.SetActive(false);

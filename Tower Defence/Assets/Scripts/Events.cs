@@ -18,4 +18,7 @@ public static class Events
 
     public static event Func<int> OnRequestLives;
     public static int RequestLives() => OnRequestLives?.Invoke() ?? 0;
+
+    public static event Action<bool> OnEndLevel;
+    public static void SetEndLevel(bool isWin) => OnEndLevel?.Invoke(isWin);
 }
