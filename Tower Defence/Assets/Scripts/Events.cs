@@ -24,4 +24,7 @@ public static class Events
 
     public static event Action<ScenarioData> OnStartLevel;
     public static void StartLevel(ScenarioData data) => OnStartLevel?.Invoke(data);
+
+    public static event Action<WaveData> OnStartWave;
+    public static void StartWave(WaveData data) => OnStartWave?.Invoke(data);
 }

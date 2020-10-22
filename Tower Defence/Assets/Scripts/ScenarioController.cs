@@ -20,6 +20,7 @@ public class ScenarioController : MonoBehaviour
 
     private bool levelRunning;
     private ScenarioData scenarioData;
+    private int currentWaveIndex;
     
     private void Awake()
     {
@@ -65,8 +66,8 @@ public class ScenarioController : MonoBehaviour
         Events.SetLives(scenarioData.Lives);
         Events.SetGold(scenarioData.StartingGold);
 
-        // add spawn delay
-        // spawn waves enemies
+        currentWaveIndex = 0;
+        Events.StartWave(scenarioData.Waves[currentWaveIndex]);
 
         levelRunning = true;
     }
@@ -124,4 +125,15 @@ public class ScenarioController : MonoBehaviour
 
     private int OnRequestGold() => gold;
     private int OnRequestLives() => lives;
+
+    private void WaveCompleted()
+    {
+        if (currentWaveIndex < scenarioData.Waves.Length)
+        {
+            currentWaveIndex++;
+            Events.StartWave(scenarioData.Waves[currentWaveIndex]);
+        }
+    }
+
+
 }
