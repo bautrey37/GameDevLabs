@@ -13,9 +13,10 @@ public class ScenarioController : MonoBehaviour
     public GameObject EndGamePanel;
     public TextMeshProUGUI EndGameText;
     public Button EndGameButton;
+    public ScenarioData DefaultScenarioData;
 
-    private int Gold;
-    private int Lives;
+    private int gold;
+    private int lives;
 
     private bool levelRunning;
     private ScenarioData scenarioData;
@@ -28,44 +29,61 @@ public class ScenarioController : MonoBehaviour
         Events.OnRequestGold += OnRequestGold;
         Events.OnRequestLives += OnRequestLives;
 
+        Events.OnStartLevel += OnStartLevel;
+        Events.OnEndLevel += OnEndLevel;
+
         EndGamePanel.SetActive(false);
         EndGameButton.onClick.AddListener(BackToMenuClick);
     }
 
     public void Start()
     {
-
-        OnStartLevel();
+        // only used when scene is started not from Menu
+        if (scenarioData == null)
+        {
+            scenarioData = DefaultScenarioData;
+        }
+        Events.StartLevel(scenarioData);
     }
 
     private void OnDestroy()
     {
         Events.OnSetGold -= OnSetGold;
+        Events.OnSetLives -= OnSetLives;
+
         Events.OnRequestGold -= OnRequestGold;
+        Events.OnRequestLives -= OnRequestLives;
+
+        Events.OnStartLevel -= OnStartLevel;
+        Events.OnEndLevel -= OnEndLevel;
     }
 
-    private void OnStartLevel()
+    private void OnStartLevel(ScenarioData data)
     {
+        scenarioData = data;
+       
+        Events.SetLives(scenarioData.Lives);
+        Events.SetGold(scenarioData.StartingGold);
+
         // add spawn delay
-        // spawn enemies
-        //Events.SetLives(scenarioData.Lives);
-        //Events.SetGold(scenarioData.StartingGold);
+        // spawn waves enemies
 
         levelRunning = true;
     }
 
-    private void OnEndLevel(bool value)
+    private void OnEndLevel(bool isWin)
     {
+        if (!levelRunning) return;
         levelRunning = false;
 
         EndGamePanel.SetActive(true);
-        if (value)
+        if (isWin)
         {
-            EndGameText.text = "VICTORY";
+            EndGameText.text = "VICTORY!";
         }
         else
         {
-            EndGameText.text = "LOST";
+            EndGameText.text = "GAME LOST!";
         }
     }
 
@@ -75,28 +93,35 @@ public class ScenarioController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    private void WinLevel()
+    // when all the enemies of the waves has been killed
+    private void checkWinLevel()
     {
-        // when X # of enemies are killed?
-    }
-
-    private void LoseLevel()
-    {
-        // when lives on castle goes to 0
+        if (Events.RequestGold() >= 70)
+        {
+            Events.EndLevel(true);
+        }
     }
 
     private void OnSetGold(int amount)
     {
-        Gold = amount;
-    }
+        gold = amount;
 
-    
+        GoldText.text = "Gold: " + amount;
+
+        checkWinLevel();
+    }    
 
     private void OnSetLives(int amount)
     {
-        Lives = amount;
+        if (lives > 0 && amount <= 0)
+        {
+            Events.EndLevel(false);
+        }
+        lives = Mathf.Max(0, amount);
+
+        LivesText.text = "Lives: " + lives;
     }
 
-    private int OnRequestGold() => Gold;
-    private int OnRequestLives() => Lives;
+    private int OnRequestGold() => gold;
+    private int OnRequestLives() => lives;
 }

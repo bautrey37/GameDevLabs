@@ -736,8 +736,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 47}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.0000076294, y: 43}
+  m_SizeDelta: {x: 237.02893, y: 52.96228}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &687721314
 MonoBehaviour:
@@ -1662,6 +1662,7 @@ MonoBehaviour:
   EndGamePanel: {fileID: 1161043687}
   EndGameText: {fileID: 687721314}
   EndGameButton: {fileID: 1385623078}
+  DefaultScenarioData: {fileID: 11400000, guid: 57fd726e8a80e4409a638c9c1860d654, type: 2}
 --- !u!1001 &964880726
 PrefabInstance:
   m_ObjectHideFlags: 0

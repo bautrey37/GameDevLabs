@@ -66,6 +66,4 @@ public class Tower : MonoBehaviour
             EnemiesInRange.Remove(enemy);
         }
     }
-
-
 }

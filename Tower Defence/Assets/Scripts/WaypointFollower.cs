@@ -6,6 +6,7 @@ public class WaypointFollower : MonoBehaviour
 {
     public Waypoint Waypoint;
     public float Speed = 2f;
+    public int Damage = 1;
 
     void Start()
     {
@@ -32,5 +33,6 @@ public class WaypointFollower : MonoBehaviour
     void DestinationReached()
     {
         GameObject.Destroy(this.gameObject);
+        Events.SetLives(Events.RequestLives() - Damage);
     }
 }

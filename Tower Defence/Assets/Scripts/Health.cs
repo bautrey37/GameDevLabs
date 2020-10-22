@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public int GoldAdd = 1;
+
     public void Hit(int damage)
     {
-        // TODO: add gold when enemy destroyed
+        Events.SetGold(Events.RequestGold() + GoldAdd);
         GameObject.Destroy(this.gameObject);
     }
 }
