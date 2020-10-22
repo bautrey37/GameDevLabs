@@ -39,11 +39,6 @@ public class MenuPresenter : MonoBehaviour
         }
     }
 
-    public void onEnable()
-    {
-
-    }
-
     public void ScenarioSelected(ScenarioData data)
     {
         SelectedScenario = data;
@@ -51,10 +46,19 @@ public class MenuPresenter : MonoBehaviour
 
     }
 
-    // deprecated function in unity
-    private void OnLevelWasLoaded(int level)
+    private void OnEnable()
     {
-        if (level != 0)
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (!scene.name.Equals("MenuScene"))
         {
             gameObject.SetActive(false);
             Events.StartLevel(SelectedScenario);
