@@ -33,3 +33,7 @@ https://courses.cs.ut.ee/2020/gamedev/fall/Main/Lab3
 Instructions are written into the 3D world where you need to implement the behavior to get to the end.
 
 ## Game 4 - Lab 5
+
+## Game 5 - Tower Defense
+
+For Lab 6 - 8.
