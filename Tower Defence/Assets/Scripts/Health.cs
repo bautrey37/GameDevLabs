@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     public void Hit(int damage)
     {
         HealthAmount -= damage;
-        if (HealthAmount < 0)
+        if (HealthAmount <= 0)
         {
             Events.SetGold(Events.RequestGold() + GoldAdd);
             GameObject.Destroy(this.gameObject);
