@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 1
   Damage: 1
-  MovementSpeed: 3
+  MovementSpeed: 2
   Sprite: {fileID: 2087493988873231479, guid: 364f9ba8959b3463fa37bc540c6684ba, type: 3}

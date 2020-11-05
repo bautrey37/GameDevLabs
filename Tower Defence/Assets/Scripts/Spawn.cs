@@ -5,9 +5,7 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public WaypointFollower FollowerPrefab;
-    public float TimeBetweenSpawn = 0.5f;
-    public float TimeBetweenWaves = 2;
-    public int EnemiesInWave = 5;
+    public float TimeBetweenWaves = 4;
     public float GameStartDelay = 2f;
 
     private float NextSpawnTime = 0;
@@ -15,7 +13,18 @@ public class Spawn : MonoBehaviour
     private int SpawnCount;
 
     private Waypoint waypoint;
+
+    // wave data
     private WaveData waveData;
+    private int EnemiesInWave;
+    private float TimeBetweenSpawn;
+
+    // enemy data
+    private EnemyData enemyData;
+    private Sprite enemySprite;
+    private int enemyHealth;
+    private float enemySpeed;
+
 
     void Awake()
     {
@@ -38,28 +47,28 @@ public class Spawn : MonoBehaviour
             {
                 SpawnEnemy();
             }
+            NextWaveTime = Time.time + TimeBetweenWaves;
         }
-        //else
-        //{
-        //    if (Time.time > NextWaveTime)
-        //    {
-        //        StartNewWave();
-        //    }
-        //}
-        
+        else
+        {
+            if (Time.time > NextWaveTime)
+            {
+                Events.EndWave();
+                EnemiesInWave = 0;
+            }
+        }
     }
 
     void SpawnEnemy()
     {
         NextSpawnTime = Time.time + TimeBetweenSpawn;
         SpawnCount++;
-        if (SpawnCount >= EnemiesInWave)
-        {
-            NextWaveTime = Time.time + TimeBetweenWaves;
-            // call waveCompleted method 
-        }
+
         WaypointFollower follower = GameObject.Instantiate(FollowerPrefab, transform.position, Quaternion.identity, null);
         follower.Waypoint = waypoint;
+        follower.Speed = enemySpeed;
+        follower.GetComponent<SpriteRenderer>().sprite = enemySprite;
+        follower.GetComponent<Health>().HealthAmount = enemyHealth;
     }
 
     public void StartNewWave(WaveData wave)
@@ -67,7 +76,11 @@ public class Spawn : MonoBehaviour
         waveData = wave;
         EnemiesInWave = waveData.NumberOfEnemies;
         TimeBetweenSpawn = waveData.TimeBetweenSpawns;
-        EnemyData enemyType = waveData.EnemyType;
+
+        enemyData = waveData.EnemyType;
+        enemySprite = enemyData.Sprite;
+        enemyHealth = enemyData.Health;
+        enemySpeed = enemyData.MovementSpeed;
 
         SpawnCount = 0;
         NextSpawnTime = Time.time;

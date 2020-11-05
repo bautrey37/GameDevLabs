@@ -33,6 +33,8 @@ public class ScenarioController : MonoBehaviour
         Events.OnStartLevel += OnStartLevel;
         Events.OnEndLevel += OnEndLevel;
 
+        Events.OnEndWave += WaveCompleted;
+
         EndGamePanel.SetActive(false);
         EndGameButton.onClick.AddListener(BackToMenuClick);
     }
@@ -57,6 +59,8 @@ public class ScenarioController : MonoBehaviour
 
         Events.OnStartLevel -= OnStartLevel;
         Events.OnEndLevel -= OnEndLevel;
+
+        Events.OnEndWave -= WaveCompleted;
     }
 
     private void OnStartLevel(ScenarioData data)
@@ -97,7 +101,7 @@ public class ScenarioController : MonoBehaviour
     // when all the enemies of the waves has been killed
     private void checkWinLevel()
     {
-        if (Events.RequestGold() >= 70)
+        if (currentWaveIndex == scenarioData.Waves.Length && levelRunning)
         {
             Events.EndLevel(true);
         }
@@ -108,8 +112,6 @@ public class ScenarioController : MonoBehaviour
         gold = amount;
 
         GoldText.text = "Gold: " + amount;
-
-        checkWinLevel();
     }    
 
     private void OnSetLives(int amount)
@@ -133,6 +135,7 @@ public class ScenarioController : MonoBehaviour
             currentWaveIndex++;
             Events.StartWave(scenarioData.Waves[currentWaveIndex]);
         }
+        checkWinLevel();
     }
 
 

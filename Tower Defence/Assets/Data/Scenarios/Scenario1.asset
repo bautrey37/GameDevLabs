@@ -19,9 +19,9 @@ MonoBehaviour:
   Waves:
   - EnemyType: {fileID: 11400000, guid: 21824664884514c10902f4801dc4c0b9, type: 2}
     NumberOfEnemies: 3
-    TimeBetweenSpawns: 1
+    TimeBetweenSpawns: 3
   - EnemyType: {fileID: 11400000, guid: b5064172cca8748ef97cb89ff1fc6149, type: 2}
     NumberOfEnemies: 2
-    TimeBetweenSpawns: 1
+    TimeBetweenSpawns: 2
   Towers:
   - {fileID: 11400000, guid: bafd56ac26ecb4013bea51c5d3acce59, type: 2}
