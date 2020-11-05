@@ -28,6 +28,6 @@ public static class Events
     public static event Action<WaveData> OnStartWave;
     public static void StartWave(WaveData data) => OnStartWave?.Invoke(data);
 
-    public static event Action OnEndWave;
-    public static void EndWave() => OnEndWave?.Invoke();
+    //public static event Action OnEndWave;
+    //public static void EndWave() => OnEndWave?.Invoke();
 }

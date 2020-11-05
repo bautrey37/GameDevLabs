@@ -5,11 +5,9 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public WaypointFollower FollowerPrefab;
-    public float TimeBetweenWaves = 4;
     public float GameStartDelay = 2f;
 
     private float NextSpawnTime = 0;
-    private float NextWaveTime = 0;
     private int SpawnCount;
 
     private Waypoint waypoint;
@@ -46,15 +44,6 @@ public class Spawn : MonoBehaviour
             if (Time.time > NextSpawnTime)
             {
                 SpawnEnemy();
-            }
-            NextWaveTime = Time.time + TimeBetweenWaves;
-        }
-        else
-        {
-            if (Time.time > NextWaveTime)
-            {
-                Events.EndWave();
-                EnemiesInWave = 0;
             }
         }
     }

@@ -21,7 +21,11 @@ public class ScenarioController : MonoBehaviour
     private bool levelRunning;
     private ScenarioData scenarioData;
     private int currentWaveIndex;
-    
+    private int timeBetweenWaves = 4;
+    private float timeToNextWave;
+    private float endGameBuffer = 15;
+
+
     private void Awake()
     {
         Events.OnSetGold += OnSetGold;
@@ -33,20 +37,8 @@ public class ScenarioController : MonoBehaviour
         Events.OnStartLevel += OnStartLevel;
         Events.OnEndLevel += OnEndLevel;
 
-        Events.OnEndWave += WaveCompleted;
-
         EndGamePanel.SetActive(false);
         EndGameButton.onClick.AddListener(BackToMenuClick);
-    }
-
-    public void Start()
-    {
-        // only used when scene is started not from Menu
-        if (scenarioData == null)
-        {
-            scenarioData = DefaultScenarioData;
-        }
-        Events.StartLevel(scenarioData);
     }
 
     private void OnDestroy()
@@ -59,21 +51,62 @@ public class ScenarioController : MonoBehaviour
 
         Events.OnStartLevel -= OnStartLevel;
         Events.OnEndLevel -= OnEndLevel;
+    }
 
-        Events.OnEndWave -= WaveCompleted;
+    public void Start()
+    {
+        // only used when scene is started not from Menu
+        if (scenarioData == null)
+        {
+            scenarioData = DefaultScenarioData;
+        }
+        Events.StartLevel(scenarioData);
     }
 
     private void OnStartLevel(ScenarioData data)
     {
         scenarioData = data;
-       
+        levelRunning = true;
+        currentWaveIndex = 0;
+
         Events.SetLives(scenarioData.Lives);
         Events.SetGold(scenarioData.StartingGold);
+    }
 
-        currentWaveIndex = 0;
+    private void Update()
+    {
+        if (levelRunning &&
+            Time.time > timeToNextWave &&
+            currentWaveIndex < scenarioData.Waves.Length)
+        {
+            Debug.Log("Starting wave " + currentWaveIndex);
+            StartWave();
+        }
+        checkWinLevel();
+    }
+
+    private void StartWave()
+    {
         Events.StartWave(scenarioData.Waves[currentWaveIndex]);
+        currentWaveIndex++;
 
-        levelRunning = true;
+        WaveData wave = scenarioData.Waves[currentWaveIndex];
+        timeToNextWave = Time.time // current time
+            + wave.NumberOfEnemies * wave.TimeBetweenSpawns // time for enemies to spawn
+            + timeBetweenWaves; // wave delay
+    }
+
+    // when all the enemies of the last wave have passed enough time to get through the level
+    // ideally would like when enemies are all killed, but I need to keep track of the enemies
+    // which are spawned in the spawner class, which is difficult.
+    private void checkWinLevel()
+    {
+        if (levelRunning &&
+            currentWaveIndex == scenarioData.Waves.Length &&
+            Time.time > timeToNextWave + endGameBuffer)
+        {
+            Events.EndLevel(true);
+        }
     }
 
     private void OnEndLevel(bool isWin)
@@ -98,15 +131,6 @@ public class ScenarioController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    // when all the enemies of the waves has been killed
-    private void checkWinLevel()
-    {
-        if (currentWaveIndex == scenarioData.Waves.Length && levelRunning)
-        {
-            Events.EndLevel(true);
-        }
-    }
-
     private void OnSetGold(int amount)
     {
         gold = amount;
@@ -127,16 +151,4 @@ public class ScenarioController : MonoBehaviour
 
     private int OnRequestGold() => gold;
     private int OnRequestLives() => lives;
-
-    private void WaveCompleted()
-    {
-        if (currentWaveIndex < scenarioData.Waves.Length)
-        {
-            currentWaveIndex++;
-            Events.StartWave(scenarioData.Waves[currentWaveIndex]);
-        }
-        checkWinLevel();
-    }
-
-
 }

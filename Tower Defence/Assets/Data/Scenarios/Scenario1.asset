@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PresentedName: Level 1 Easy
   SceneName: SampleScene
-  Lives: 30
+  Lives: 15
   StartingGold: 30
   Waves:
   - EnemyType: {fileID: 11400000, guid: 21824664884514c10902f4801dc4c0b9, type: 2}
     NumberOfEnemies: 3
-    TimeBetweenSpawns: 3
+    TimeBetweenSpawns: 2.5
   - EnemyType: {fileID: 11400000, guid: b5064172cca8748ef97cb89ff1fc6149, type: 2}
     NumberOfEnemies: 2
     TimeBetweenSpawns: 2
