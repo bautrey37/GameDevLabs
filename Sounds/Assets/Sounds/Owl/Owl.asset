@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a5ca1e1b4e7143fcae8032c9bfc6020, type: 3}
-  m_Name: CoinDrop
+  m_Name: Owl
   m_EditorClassIdentifier: 
-  VolumeMin: 0.97
+  VolumeMin: 0.93
   VolumeMax: 1.05
-  PitchMin: 0.92
-  PitchMax: 1.07
-  Cooldown: 0.4
+  PitchMin: 0.95
+  PitchMax: 1.04
+  Cooldown: 0.1
   Clips:
-  - {fileID: 8300000, guid: ba503616ad53f45699db327dc15015c6, type: 3}
-  - {fileID: 8300000, guid: cc6390e6a917a426cb9522c762fd5793, type: 3}
-  - {fileID: 8300000, guid: 8bdf93c7510204f0ebdf71fbc011aa71, type: 3}
-  - {fileID: 8300000, guid: 69203236c0d3040d0ab1323a6ba5e587, type: 3}
+  - {fileID: 8300000, guid: e8860080610b94434958856f429bad2d, type: 3}
+  - {fileID: 8300000, guid: d68915069dfe2461b8b9775141a276f4, type: 3}
+  - {fileID: 8300000, guid: d61c6d4d37d0d48f99228a8772b5287b, type: 3}

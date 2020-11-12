@@ -251,6 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoinDropAudio: {fileID: 11400000, guid: 0d38792ba1e6c418a981222a8c1ae88c, type: 2}
+  OwlAudio: {fileID: 11400000, guid: f9d0f017aa570424e961f1b9ab05a4f0, type: 2}
+  FireAudio: {fileID: 11400000, guid: 64549d358aee040a1a41579b9d1e818f, type: 2}
 --- !u!114 &970447941
 MonoBehaviour:
   m_ObjectHideFlags: 0
