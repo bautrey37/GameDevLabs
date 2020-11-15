@@ -53,10 +53,10 @@ public class CharacterInput : MonoBehaviour
 	        //animator.SetTrigger("Jump");
 	    }
 
-	    //animator.SetBool("Walk", moving);
+        animator.SetBool("Walk", moving);
         //animator.SetBool("Run", Input.GetKey(KeyCode.LeftShift));
         //animator.SetBool("Crouch", Input.GetKey(KeyCode.LeftControl));
-        
+
 
     }
 }
