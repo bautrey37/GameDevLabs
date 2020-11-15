@@ -6,6 +6,8 @@ public class TweeningPanelPresenter : MonoBehaviour
 {
 
     //TODO Add public fields to reference opening and closing animations
+    public ScalingAnimation OpeningAnimation;
+    public ScalingAnimation ClosingAnimation;
 
     public void Open()
     {
@@ -14,6 +16,7 @@ public class TweeningPanelPresenter : MonoBehaviour
 
         gameObject.SetActive(true);
         //TODO Also enable the opening animation
+        OpeningAnimation.enabled = true;
     }
 
     public void Close()
@@ -22,6 +25,11 @@ public class TweeningPanelPresenter : MonoBehaviour
         if(!gameObject.activeSelf)
             return;
 
+        ClosingAnimation.enabled = true;
+    }
+
+    public void CloseFinished()
+    {
         gameObject.SetActive(false);
     }
 
