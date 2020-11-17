@@ -43,19 +43,32 @@ public class CharacterInput : MonoBehaviour
         //Play death animation
 	    if (Input.GetKeyDown(KeyCode.Alpha1))
 	    {
-	        //animator.SetTrigger("Nap");
-	        dead = true;
+            animator.SetTrigger("Nap");
+            dead = true;
 	    }
 
-        //Play jump animation
+        //Play jump/roll animation
 	    if (Input.GetKeyDown(KeyCode.Space))
 	    {
-	        //animator.SetTrigger("Jump");
-	    }
+			if (animator.GetBool("Walk"))
+            {
+				animator.SetInteger("PreviousState", 0);
+				animator.SetTrigger("Jump");
+			}
+			if (animator.GetBool("Run"))
+			{
+				animator.SetInteger("PreviousState", 1);
+				animator.SetTrigger("Jump");
+			}
+			if (animator.GetBool("Crouch"))
+			{
+				animator.SetTrigger("Roll");
+			}
+		}
 
         animator.SetBool("Walk", moving);
-        //animator.SetBool("Run", Input.GetKey(KeyCode.LeftShift));
-        //animator.SetBool("Crouch", Input.GetKey(KeyCode.LeftControl));
+        animator.SetBool("Run", Input.GetKey(KeyCode.LeftShift));
+        animator.SetBool("Crouch", Input.GetKey(KeyCode.LeftControl));
 
 
     }
