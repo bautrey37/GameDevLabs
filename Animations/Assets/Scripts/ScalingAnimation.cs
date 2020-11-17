@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class ScalingAnimation : MonoBehaviour
 {
     public AnimationCurve Curve;
-    public float Speed = 1;
+    public float Speed = 0.5f;
     public Vector3 StartScale = Vector3.zero;
     public Vector3 TargetScale = Vector3.one;
 
