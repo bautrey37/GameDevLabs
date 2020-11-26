@@ -6,19 +6,17 @@ public class BillBoard : MonoBehaviour
     public ParticleSystem Explosion;
 
     private Camera cameraToLookAt;
-
-    private bool exploded = false;
-
-    Animator animator;
+    private Animator animator;
 
     public void Awake()
     {
         cameraToLookAt = Camera.main;
+        Explosion.Stop();
     }
 
     private void Start()
     {
-        animator = gameObject.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -31,12 +29,10 @@ public class BillBoard : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         CharacterController cont = other.GetComponent<CharacterController>();
-        if (!exploded && cont)
+        if (cont)
         {
             animator.SetTrigger("Explode");
-            Explode();
         }
-        //exploded = true;
     }
 
     public void Explode()

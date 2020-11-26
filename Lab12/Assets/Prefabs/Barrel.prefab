@@ -159,6 +159,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Explosion
       objectReference: {fileID: 0}
+    - target: {fileID: 3919417427147563330, guid: a5a6856bf75b3438da1d46ab0ffc4b62, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8229723781552929532, guid: a5a6856bf75b3438da1d46ab0ffc4b62, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
