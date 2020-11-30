@@ -38,5 +38,6 @@ public class BillBoard : MonoBehaviour
     public void Explode()
     {
         Explosion.Play();
+        //FirstPersonController.OnControllerColliderHit(gameObject);
     }
 }
