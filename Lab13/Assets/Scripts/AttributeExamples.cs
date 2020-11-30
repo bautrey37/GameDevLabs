@@ -159,4 +159,9 @@ public class AttributeExamples : MonoBehaviour
         print("hello");
     }
 
+    private void Update()
+    {
+        print("Update");
+    }
+
 }

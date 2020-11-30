@@ -215,7 +215,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1885599785}
-  - component: {fileID: 1885599787}
   - component: {fileID: 1885599786}
   m_Layer: 0
   m_Name: GameObject
@@ -232,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885599784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: -4.84, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -247,35 +246,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1885599784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa5eabe2517e94874854a48b073c440c, type: 3}
+  m_Script: {fileID: 11500000, guid: 03c698b0663f0432db3c58d05f96dd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalString: 
-  multiLineString: 
-  defaultTextArea: 
-  resizedTextArea: 
-  floatSlider: 0
-  intSlider: 0
-  delayedValueEntry: 0
-  privateInt: 0
-  publicInt: 0
-  Color: {r: 0, g: 0, b: 0, a: 0}
---- !u!95 &1885599787
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1885599784}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  isOn: 0

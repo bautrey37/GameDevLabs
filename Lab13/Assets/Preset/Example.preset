@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Example
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: aa5eabe2517e94874854a48b073c440c, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: normalString
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: multiLineString
+    value: 'kjhasdfk asdkfjh wieuyasdfkashdf i
+
+      weu sakfhasdkfuy
+
+      weiuhsadfkhs '
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: defaultTextArea
+    value: "aksjhsa dkhsadwe sksd duhehsdsduh  sdf sdf ssd\nsdf\nsdf\nsdf\nsdf\nsdf\nwe\n
+      \nwe\nfwefsdf s\n\n wef\ns df\nsdf\n"
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: resizedTextArea
+    value: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: floatSlider
+    value: 0.36
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: intSlider
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: delayedValueEntry
+    value: 98876
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: privateInt
+    value: 578798
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: publicInt
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Color.r
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Color.g
+    value: 0.3019608
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Color.b
+    value: 0.16288388
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Color.a
+    value: 0
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []
