@@ -37,3 +37,7 @@ Instructions are written into the 3D world where you need to implement the behav
 ## Game 5 - Tower Defense
 
 For Lab 6 - 8.
+
+## Lab 15 - Procedural Generation
+
+![lab15](screenshots/lab15.png)
