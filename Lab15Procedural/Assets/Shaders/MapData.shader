@@ -49,10 +49,24 @@ Shader "JJ/MapData"
 
 			half4 frag (v2f i) : SV_Target
 			{					
-				float h = 0;
 				float2 pos = (i.uv + _Delta);
-				h = simplexNoise(pos * 4);
-				return half4(h, h, h, 1.0);
+
+				float dx = simplexNoise(pos * 6.9 + 69);
+				float dy = simplexNoise(pos * 6.9 - 69);
+
+				pos += float2(dx, dy) * 0.01;
+
+				float h = simplexNoise(pos * 2);
+				float h2 = simplexNoise(pos * 3.2);
+				float h3 = simplexNoise(pos * 6.2);
+				/* h = (h + 1) * 0.5; */
+				h = abs(h);
+				h2 = abs(h2);
+				h3 = 1 - abs(h3);
+
+				float c = h * 0.5 + h2 * 0.4 + h3 * 0.3;
+
+				return half4(c, c, c, 1.0);
 			}
 			ENDCG
 		}

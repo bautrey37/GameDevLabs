@@ -1,6 +1,7 @@
 ﻿Shader "JJ/Terrain" {
 	Properties {
-		_Color ("Color", Color) = (1,1,1,1)
+		_Color ("Color", Color) = (0,0,0,1)
+		_Color2 ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 	}
 	SubShader {
@@ -16,6 +17,7 @@
 
 		sampler2D _MainTex;	
 		fixed4 _Color;
+		fixed4 _Color2;
 
 		struct Input {
 			float2 uv_MainTex;
@@ -26,7 +28,8 @@
 			half4 data = tex2D(_MainTex, IN.uv_MainTex);
 			fixed4 c = data.r;
 
-			o.Albedo = c.rgb;
+			/*o.Albedo = c.rgb;*/
+			o.Albedo = lerp(_Color, _Color2, c);
 			o.Alpha = c.a;
 		}
 		ENDCG
