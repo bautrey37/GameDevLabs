@@ -4,39 +4,63 @@ UT Game Development Class Lab Practices. https://courses.cs.ut.ee/2020/gamedev/f
 
 ## Game 1 - Flappy Bird
 
-For Lab 1.
-
 Deployed at: https://birdgame-brandon.surge.sh/
 
-https://courses.cs.ut.ee/2020/gamedev/fall/Main/Lab1
-
-Tasks (pick 3 of 7):
-
-- [x] When the player dies, play the death audio too.
-- [ ] Make the bird tilt up or down depending on the movement direction (down if the bird is falling).
-- [x] When the bird hits the wall make it fall out of the screen first, instead of resetting the game right away.
-- [ ] Add a score counter to the screen. Increase the score every time when the player passes through the trees.
-- [ ] Change the Game.cs script such that it creates as many trees as needed to fill the screen with given tree distance. Decrease the tree distance so that the game shows at least 5 trees at once. (make sure that the game remains playable)
-- [ ] Make the tree parts move up and down periodically. (make sure that the game remains playable)
-- [x] Make each tree spawn with a random color.
+![flappy-bird](screenshots/flappy-bird.png)
 
 ## Game 2 - Space Game
 
-For Lab 2 - 3.
+Labs 2 - 3
 
-Deployed at: https://spacegame-brandon.surge.sh/
+Deployed: https://spacegame-brandon.surge.sh/
 
-https://courses.cs.ut.ee/2020/gamedev/fall/Main/Lab3
+![space-game](screenshots/space-game.png)
 
 ## Game 3 - 3D tutorial (Components Task)
 
 Instructions are written into the 3D world where you need to implement the behavior to get to the end.
 
-## Game 4 - Lab 5
+![game3](screenshots/game3.png)
+
+## Game 4 - Project Setup
+
+![lab5](screenshots/lab5.png)
 
 ## Game 5 - Tower Defense
 
-For Lab 6 - 8.
+Labs 6 - 8
+
+Deployed: tower-defense-brandon.surge.sh
+
+![tower-defense](screenshots/tower-defense.png)
+
+## Lab 9 - Blender
+
+![lab9](screenshots/lab9.png)
+
+## Lab 10 - Sounds
+
+Press 1, 2, or 3 to play sounds. Sound is randomized to never be the exact same.
+
+Deployed: sounds-brandon.surge.sh
+
+## Lab 11 - Animations
+
+Deployed: animation-brandon.surge.sh
+
+![lab11](screenshots/lab11.png)
+
+## Lab 12 - Level Design
+
+Deployed: lab12-brandon.surge.sh
+
+![lab12](screenshots/lab12.png)
+
+## Lab 13 - Editor Extensions
+
+## Lab 14 - Lighting
+
+![lab14](screenshots/lab14.png)
 
 ## Lab 15 - Procedural Generation
 
